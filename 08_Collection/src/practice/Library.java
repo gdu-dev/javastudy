@@ -15,7 +15,16 @@ public class Library {
 	}
 	
 	private void addBook() {
-		
+		System.out.println("=== 책 추가하기 ===");
+		System.out.print("isbn >>> ");
+		String isbn = sc.next();
+		System.out.print("title >>> ");
+		String title = sc.next();
+		System.out.print("author >>> ");
+		String author = sc.next();
+		Book book = new Book(isbn, title, author);
+		books.add(book);
+		System.out.println(title + " 책이 추가되었습니다.");
 	}
 	
 	private void deleteBook() {
@@ -34,7 +43,7 @@ public class Library {
 		
 		while(true) {
 			
-			System.out.println("1.추가 2.삭제 3.조회 4.전체 0.종료 >>> ");
+			System.out.print("1.추가 2.삭제 3.조회 4.전체 0.종료 >>> ");
 			String choice = sc.next();
 			
 			switch(choice) {
@@ -62,17 +71,3 @@ public class Library {
 	}
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
