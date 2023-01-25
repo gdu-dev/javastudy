@@ -33,6 +33,19 @@ public class Library {
 			if(books.isEmpty()) {
 				throw new RuntimeException("등록된 책이 없습니다.");
 			}
+			System.out.print("삭제할 isbn >>> ");
+			String isbn = sc.next();
+			if(isbn.isEmpty() == false) {
+				for(int i = 0; i < books.size(); i++) {
+					Book book = books.get(i);
+					if(isbn.equals(book.getIsbn())) {
+						Book deletedBook = books.remove(i);  // remove(i)는 삭제된 요소(Book)를 반환한다.
+						System.out.println(deletedBook + " 책이 삭제되었습니다.");
+						return;
+					}
+				}
+			}
+			throw new RuntimeException(isbn + " isbn을 가진 책이 없습니다.");
 		} catch(Exception e) {
 			System.out.println(e.getMessage());
 		}
