@@ -74,7 +74,17 @@ public class Library {
 	}
 	
 	private void printAllBooks() {
-		
+		System.out.println("=== 전체 조회하기 ===");
+		try {
+			if(books.isEmpty()) {
+				throw new RuntimeException("등록된 책이 없습니다.");
+			}
+			for(Book book : books) {
+				System.out.println(book);
+			}
+		} catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	public void manage() {
