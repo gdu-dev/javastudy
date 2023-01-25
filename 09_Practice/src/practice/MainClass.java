@@ -78,9 +78,21 @@ public class MainClass {
 		
 		File dir = new File("C:" + File.separator + "storage");
 		
+		/* 저장된 파일이 myfile.txt 뿐이라는 걸 알고 있어서 이런 코드가 나왔죠.
 		File file = new File(dir, "myfile.txt");
 		if(file.exists()) {
 			file.delete();
+		}
+		*/
+
+		// 이건 저장된 모든 파일을 지운다는 코드입니다.(디렉터리는 없다는 가정이요.)
+		File[] files = dir.listFiles();
+		if(files != null) {			
+			for(File file : files) {
+				if(file.isFile()) {
+					file.delete();
+				}
+			}
 		}
 		
 		if(dir.exists()) {
