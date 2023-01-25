@@ -37,8 +37,27 @@ public class MainClass {
 	2023-01-04  오후 02:19             1,302 release
 	               2개 파일               1,462 바이트
 	*/
+	public static void ex02() {
+		
+	}
+	
+	// 문제3. C:\storage 디렉터리를 삭제하시오.
+	// 파일이 저장된 디렉터리는 지워지지 않으므로 먼저 디렉터리에 저장된 파일을 삭제해야 한다.
+	public static void ex03() {
+		
+	}
+	
 	public static void main(String[] args) {
-		ex01();
+		ex02();
 	}
 
 }
+
+
+
+
+
+
+
+
+
