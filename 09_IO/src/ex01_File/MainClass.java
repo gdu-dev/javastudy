@@ -88,8 +88,22 @@ public class MainClass {
 		
 	}
 	
+	public static void ex04() {
+		
+		File dir = new File("C:" + File.separator + "Program Files");
+		
+		File[] files = dir.listFiles();
+		
+		for(int i = 0; i < files.length; i++) {
+			if(files[i].isHidden() == false) {
+				System.out.println(files[i].getName());
+			}
+		}
+		
+	}
+	
 	public static void main(String[] args) throws IOException {  // main 메소드를 호출하는 곳으로 예외 처리를 넘긴다.(개발자가 try-catch 하지 않겠다.)
-		ex03();
+		ex04();
 	}
 
 }

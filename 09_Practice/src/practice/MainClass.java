@@ -25,6 +25,18 @@ public class MainClass {
 		
 	}
 	
+	// 문제2. C:\Program Files\Java\jdk-11.0.17 경로의 파일 목록을 아래와 같이 출력하시오.
+	/*
+	2023-01-04  오후 02:19    <DIR>          bin
+	2023-01-04  오후 02:19    <DIR>          conf
+	2023-01-04  오후 02:19    <DIR>          include
+	2023-01-04  오후 02:19    <DIR>          jmods
+	2023-01-04  오후 02:19    <DIR>          legal
+	2023-01-04  오후 02:19    <DIR>          lib
+	2023-01-04  오후 02:19               160 README.html
+	2023-01-04  오후 02:19             1,302 release
+	               2개 파일               1,462 바이트
+	*/
 	public static void main(String[] args) {
 		ex01();
 	}
