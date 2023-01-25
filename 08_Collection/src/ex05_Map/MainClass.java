@@ -16,8 +16,8 @@ public class MainClass {
 			1) Entry : 하나의 데이터
 			2) Key   : Entry의 구성 요소, 식별자 역할을 수행(배열의 인덱스와 같은 역할)
 			3) Value : Entry의 구성 요소, 실제 데이터(배열에 저장된 데이터와 같은 역할)
-		3. 주로 Key는 String을 사용한다.(변수 이름)
-		4. 주로 Value는 Object를 사용한다.(변수에 저장된 값)
+		3. Key는 주로 String을 사용한다.(변수 이름)
+		4. Value는 주로 Object를 사용한다.(변수에 저장된 값)
 		5. Key는 중복이 불가능하고, Value는 중복이 가능하다.
 	 */
 
