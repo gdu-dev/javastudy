@@ -28,7 +28,14 @@ public class Library {
 	}
 	
 	private void deleteBook() {
-		
+		System.out.println("=== 책 삭제하기 ===");
+		try {
+			if(books.isEmpty()) {
+				throw new RuntimeException("등록된 책이 없습니다.");
+			}
+		} catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	private void findBook() {
