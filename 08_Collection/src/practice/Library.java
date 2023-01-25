@@ -52,7 +52,25 @@ public class Library {
 	}
 	
 	private void findBook() {
-		
+		System.out.println("=== 책 조회하기 ===");
+		try {
+			if(books.isEmpty()) {
+				throw new RuntimeException("등록된 책이 없습니다.");
+			}
+			System.out.print("조회할 isbn >>> ");
+			String isbn = sc.next();
+			if(!isbn.isEmpty()) {
+				for(Book book : books) {
+					if(isbn.equals(book.getIsbn())) {
+						System.out.println("조회 결과 : " + book);
+						return;
+					}
+				}
+			}
+			throw new RuntimeException(isbn + " isbn을 가진 책이 없습니다.");
+		} catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	private void printAllBooks() {
