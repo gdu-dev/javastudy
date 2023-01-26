@@ -150,8 +150,28 @@ public class MainClass {
 		
 	}
 	
+	public static void ex04() {
+		
+		File dir = new File("C:" + File.separator + "storage");
+		if(dir.exists() == false) {
+			dir.mkdirs();
+		}
+		
+		File file = new File(dir, "ex04.txt");
+		
+		try(BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
+			
+			bw.write("안녕하세요 반갑습니다");
+			System.out.println("ex04.txt 파일이 생성되었다.");
+			
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 	public static void main(String[] args) {
-		ex03();
+		ex04();
 	}
 
 }
