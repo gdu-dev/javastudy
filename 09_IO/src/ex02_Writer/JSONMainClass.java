@@ -112,6 +112,14 @@ public class JSONMainClass {
 			int price = obj.getInt("price");
 			System.out.println(model + "," + maker + "," + price);
 		}
+		// 2. 향상 for문
+		for(Object obj : products) {
+			JSONObject product = (JSONObject)obj;
+			String model = product.getString("model");
+			String maker = product.getString("maker");
+			int price = product.getInt("price");
+			System.out.println(model + "," + maker + "," + price);
+		}
 		
 	}
 	
