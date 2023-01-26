@@ -1,9 +1,12 @@
 package practice;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
+import java.util.Scanner;
 
 public class MainClass {
 
@@ -101,8 +104,55 @@ public class MainClass {
 		
 	}
 	
+	// 문제4. 사용자로부터 입력 받은 문자열을 C:\storage\diary.txt 파일로 보내시오.
+	// 총 5개 문장을 입력 받아서 보내시오.
+	public static void ex04() {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		String[] sentences = new String[5];
+		System.out.println("5문장을 입력하세요.");
+		for(int i = 0; i < sentences.length; i++) {
+			sentences[i] = sc.nextLine();
+		}
+		
+		File dir = new File("C:" + File.separator + "storage");
+		if(dir.exists() == false) {
+			dir.mkdirs();
+		}
+		
+		File file = new File(dir, "diary.txt");
+		
+		try (PrintWriter out = new PrintWriter(file)) {
+			
+			for(int i = 0; i < sentences.length; i++) {
+				out.println(sentences[i]);
+			}
+			
+			System.out.println("diary.txt 파일이 생성되었다.");
+			
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		
+		sc.close();
+		
+	}
+	
 	public static void main(String[] args) {
-		ex03();
+		ex04();
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
