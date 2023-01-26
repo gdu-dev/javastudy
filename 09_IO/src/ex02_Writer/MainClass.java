@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class MainClass {
 
@@ -170,23 +171,43 @@ public class MainClass {
 		
 	}
 	
+	public static void ex05() {
+		
+		/*
+			PrintWriter
+			1. print(), println() 메소드를 지원하는 Writer이다.
+			2. 줄 바꿈이 자주 필요한 경우에 println() 메소드 사용을 위해서 사용한다.
+		*/
+		
+		File dir = new File("C:" + File.separator + "storage");
+		if(dir.exists() == false) {
+			dir.mkdirs();
+		}
+		
+		File file = new File(dir, "ex05.txt");
+		
+		PrintWriter out = null;
+		
+		try {
+			
+			out = new PrintWriter(file);
+			
+			// 자동 줄바꿈이 사용되는 println 메소드
+			out.println("안녕하세요.");
+			out.println("반갑습니다.");
+			
+			System.out.println("ex05.txt 파일이 생성되었다.");
+			
+		} catch(IOException e) {
+			e.printStackTrace();
+		} finally {
+			out.close();  // close 메소드 내부에서 이미 IOException을 처리하고 있다.
+		}
+		
+	}
+	
 	public static void main(String[] args) {
-		ex04();
+		ex05();
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
