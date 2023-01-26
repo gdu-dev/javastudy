@@ -1,11 +1,15 @@
 package practice;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class MainClass {
@@ -144,25 +148,63 @@ public class MainClass {
 	// 2023-01-26 12:08:30 / by zero
 	public static void ex05() {
 		
-		Scanner sc = new Scanner(System.in);
+		try {
+			
+			Scanner sc = new Scanner(System.in);
+			
+			System.out.print("첫 번째 정수를 입력하세요 >>> ");
+			int number1 = sc.nextInt();
+			
+			System.out.print("두 번째 정수를 입력하세요 >>> ");
+			int number2 = sc.nextInt();
+			
+			int add = number1 + number2;
+			int sub = number1 - number2;
+			int mul = number1 * number2;
+			int div = number1 / number2;
+			
+			System.out.println(number1 + "+" + number2 + "=" + add);
+			System.out.println(number1 + "-" + number2 + "=" + sub);
+			System.out.println(number1 + "*" + number2 + "=" + mul);
+			System.out.println(number1 + "/" + number2 + "=" + div);
+	
+			sc.close();
 		
-		System.out.print("첫 번째 정수를 입력하세요 >>> ");
-		int number1 = sc.nextInt();
-		
-		System.out.print("두 번째 정수를 입력하세요 >>> ");
-		int number2 = sc.nextInt();
-		
-		int add = number1 + number2;
-		int sub = number1 - number2;
-		int mul = number1 * number2;
-		double div = (double)number1 / number2;
-		
-		System.out.println(number1 + "+" + number2 + "=" + add);
-		System.out.println(number1 + "-" + number2 + "=" + sub);
-		System.out.println(number1 + "*" + number2 + "=" + mul);
-		System.out.println(number1 + "/" + number2 + "=" + div);
-
-		sc.close();s
+		} catch(Exception e) {
+			
+			// 날짜
+			LocalDateTime now = LocalDateTime.now();
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+			String dateTime = dtf.format(now);
+			
+			// 예외 클래스 이름
+			String className = e.getClass().getName();
+			
+			// 예외 메시지
+			String message = e.getMessage();
+			
+			// 로그 파일 만들기
+			File dir = new File("C:" + File.separator + "storage");
+			if(dir.exists() == false) {
+				dir.mkdirs();
+			}
+			
+			File file = new File(dir, "log.txt");
+			
+			// 생성 모드(언제나 새로 만든다.)    new FileWriter(file)
+			// 추가 모드(기존 내용에 추가한다.)  new FileWriter(file, true)
+			try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))) {
+				
+				bw.write(dateTime + " " + className + " " + message + "\n");
+				// bw.newLine();  \n을 대신할 수 있는 코드
+				
+				System.out.println("예외 메시지가 log.txt 파일에 기록되었습니다.");
+				
+			} catch(IOException e2) {
+				e2.printStackTrace();
+			}
+			
+		}
 		
 	}
 	
