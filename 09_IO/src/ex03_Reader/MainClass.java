@@ -105,6 +105,12 @@ public class MainClass {
 	
 	public static void ex03() {
 		
+		/*
+			BufferedReader의 장점
+			1. 속도가 빠르다.
+			2. readLine 메소드를 사용할 수 있다.
+		*/
+		
 		File dir = new File("C:" + File.separator + "storage");
 		if(dir.exists() == false) {
 			dir.mkdirs();
@@ -118,12 +124,10 @@ public class MainClass {
 			
 			br = new BufferedReader(new FileReader(file));
 			
-			char[] cbuf = new char[5];
-			int readCount = 0;
+			String line = null;
 			StringBuilder sb = new StringBuilder();
-			
-			while((readCount = br.read(cbuf)) != -1) {
-				sb.append(cbuf, 0, readCount);
+			while((line = br.readLine()) != null) {
+				sb.append(line);
 			}
 			
 			System.out.println(sb.toString());
