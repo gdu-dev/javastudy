@@ -1,7 +1,9 @@
 package practice;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -211,7 +213,45 @@ public class MainClass {
 	// 문제6. C:\storage\diary.txt 파일을 C:\storage2\diary.txt 파일로 이동하시오.
 	// 이동에 소요된 시간을 출력하시오.
 	public static void ex06() {
+
+		File from = new File("C:" + File.separator + "storage", "diary.txt");		
 		
+		File toDir = new File("C:" + File.separator + "storage2");
+		if(toDir.exists() == false) {
+			toDir.mkdirs();
+		}
+		File to = new File(toDir, from.getName());
+		
+		BufferedReader br = null;
+		BufferedWriter bw = null;
+		
+		try {
+			
+			long startTime = System.currentTimeMillis();
+
+			br = new BufferedReader(new FileReader(from));
+			bw = new BufferedWriter(new FileWriter(to));
+			
+			String line = null;
+			while((line = br.readLine()) != null) {
+				bw.write(line);
+				bw.newLine();
+			}
+			
+			bw.close();
+			br.close();	
+			
+			if(from.length() == to.length()) {  // 복사 성공했다면 삭제
+				from.deleteOnExit();
+			}
+
+			long stopTime = System.currentTimeMillis();
+			
+			System.out.println("이동에 걸린 시간 : " + (stopTime - startTime) + "밀리초");
+			
+		} catch(IOException e) {
+			e.printStackTrace();
+		} 
 	}
 	
 	public static void main(String[] args) {
@@ -219,8 +259,3 @@ public class MainClass {
 	}
 
 }
-
-
-
-
-
