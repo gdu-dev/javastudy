@@ -55,9 +55,3 @@ public class JSONMainClass {
 	}
 
 }
-
-
-
-
-
-
