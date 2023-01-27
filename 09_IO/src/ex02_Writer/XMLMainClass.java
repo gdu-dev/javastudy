@@ -1,5 +1,6 @@
 package ex02_Writer;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -7,6 +8,11 @@ import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -69,6 +75,7 @@ public class XMLMainClass {
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			Document document = builder.newDocument();
+			document.setXmlStandalone(true);  // standalone="no" 제거하기
 			
 			// <products> 태그 : Element 생성
 			Element products = document.createElement("products");
@@ -98,24 +105,26 @@ public class XMLMainClass {
 				
 			}
 			
+			// XML 설정
+			TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			Transformer transformer = transformerFactory.newTransformer();
+			transformer.setOutputProperty("encoding", "UTF-8");
+			transformer.setOutputProperty("indent", "yes");  // 들여쓰기
+			transformer.setOutputProperty("doctype-public", "yes");  // standalone="no" 제거하기 위해서 document.setXmlStandalone(true);를 추가하면 개행(줄바꿈)이 안 되므로 추가한 코드 
+			
+			// XML 문서 만들기
+			File dir = new File("C:" + File.separator + "storage");
+			if(dir.exists() == false) {
+				dir.mkdirs();
+			}
+			File file = new File(dir, "product.xml");
+			Source source = new DOMSource(document);
+			StreamResult streamResult = new StreamResult(file);
+			transformer.transform(source, streamResult);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 	}
 	
