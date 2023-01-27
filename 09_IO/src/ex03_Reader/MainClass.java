@@ -147,9 +147,3 @@ public class MainClass {
 	}
 
 }
-
-
-
-
-
-
