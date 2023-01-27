@@ -208,8 +208,19 @@ public class MainClass {
 		
 	}
 	
+	// 문제6. C:\storage\diary.txt 파일을 C:\storage2\diary.txt 파일로 이동하시오.
+	// 이동에 소요된 시간을 출력하시오.
+	public static void ex06() {
+		
+	}
+	
 	public static void main(String[] args) {
-		ex05();
+		ex06();
 	}
 
 }
+
+
+
+
+
