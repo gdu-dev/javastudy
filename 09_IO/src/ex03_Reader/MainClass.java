@@ -1,5 +1,6 @@
 package ex03_Reader;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -102,8 +103,47 @@ public class MainClass {
 		
 	}
 	
+	public static void ex03() {
+		
+		File dir = new File("C:" + File.separator + "storage");
+		if(dir.exists() == false) {
+			dir.mkdirs();
+		}
+		
+		File file = new File(dir, "ex03.txt");
+		
+		BufferedReader br = null;
+		
+		try {
+			
+			br = new BufferedReader(new FileReader(file));
+			
+			char[] cbuf = new char[5];
+			int readCount = 0;
+			StringBuilder sb = new StringBuilder();
+			
+			while((readCount = br.read(cbuf)) != -1) {
+				sb.append(cbuf, 0, readCount);
+			}
+			
+			System.out.println(sb.toString());
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(br != null) {
+					br.close();
+				}
+			} catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
 	public static void main(String[] args) {
-		ex02();
+		ex03();
 	}
 
 }
