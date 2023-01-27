@@ -239,7 +239,7 @@ public class MainClass {
 			}
 			
 			bw.close();
-			br.close();	
+			br.close();
 			
 			if(from.length() == to.length()) {  // 복사 성공했다면 삭제
 				from.deleteOnExit();
