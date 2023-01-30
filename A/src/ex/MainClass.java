@@ -1,5 +1,10 @@
 package ex;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -7,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+
+import jdk.jshell.spi.ExecutionControl.RunException;
 
 public class MainClass {
 
@@ -166,8 +173,83 @@ public class MainClass {
 		
 	}
 	
+	public static void ex08() {
+		
+		FileWriter fw = null;
+		FileReader fr = null;
+		
+		try {
+			fw = new FileWriter("sample.txt");
+			fr = new FileReader("sample.txt");
+			fw.close();
+			fr.close();
+		
+		} catch(FileNotFoundException e) {
+			e.printStackTrace();
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public static void ex09() throws FileNotFoundException, IOException {
+		
+		FileWriter fw = new FileWriter("sample.txt");
+		FileReader fr = new FileReader("sample.txt");
+		
+		fr.close();
+		fw.close();
+
+		BufferedReader br = null;
+		if(br == null) {
+			throw new RuntimeException();
+		}
+		
+	}
+	
+	public static void ex10() {
+		
+		FileWriter fw = null;
+		
+		try {
+			
+			fw = new FileWriter("sample.txt");
+			fw.write(1);
+			
+		} catch (Exception e) {
+			
+			System.out.println(e.getMessage());
+			
+		} finally {
+			
+			try {
+			
+				fw.close();
+				
+			} catch(IOException e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+	}
+	
 	public static void main(String[] args) {
-		ex07();
+		
+		ex10();
+		
+		/*
+		try {
+			ex09();
+		} catch(FileNotFoundException e) {
+			System.out.println("sample.txt 파일이 없음");
+		} catch(IOException e) {
+			System.out.println("sample.txt 파일을 생성할 수 없음");
+		} catch(RuntimeException e) {
+			System.out.println("RuntimeException 발생");
+		}
+		*/
+		
 	}
 
 }
