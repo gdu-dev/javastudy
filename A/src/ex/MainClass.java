@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 public class MainClass {
 
@@ -105,23 +106,68 @@ public class MainClass {
 		map.put(1, new Car("벤츠", 100));  // key가1, value가 new Car("벤츠", 100)인 Entry가 등록
 		map.put(2, new Car("BMW", 200));   // key가2, value가 new Car("BMW", 200)인 Entry가 등록
 		
-		for(Map.Entry<Integer, Car> entry : map.entrySet()) {
-			System.out.println("Key는" + entry.getKey() + "이고, Value는 " + entry.getValue() + "이다.");
+		for(Entry<Integer, Car> entry : map.entrySet()) {
+			System.out.println("Key는 " + entry.getKey() + "이고, Value는 " + entry.getValue() + "이다.");
+		}
+		
+		for(Integer key : map.keySet()) {
+			System.out.println("Key는 " + key + "이고, Value는 " + map.get(key) + "이다.");
+		}
+		
+	}
+	
+	public static void ex06() {
+				
+		Map<Integer, Car> home1 = new HashMap<>();
+		home1.put(1, new Car("벤츠", 100));
+		home1.put(2, new Car("BMW", 200));
+		
+		Map<Integer, Car> home2 = new HashMap<>();
+		home2.put(1, new Car("테슬라", 300));
+		home2.put(2, new Car("람보르기니", 400));
+		
+		List<Map<Integer, Car>> list = new ArrayList<>();
+		list.add(home1);
+		list.add(home2);
+		
+		for(Map<Integer, Car> map : list) {
+			Set<Integer> keys = map.keySet();  // 순서 없음
+			for(Integer key : keys) {
+				System.out.println(map.get(key));
+			}
+		}
+		
+	}
+	
+	public static void ex07() {
+		
+		Map<String, Object> product1 = new HashMap<String, Object>();
+		product1.put("model", "세탁기");
+		product1.put("maker", "삼성");
+		product1.put("price", 100);
+		
+		Map<String, Object> product2 = new HashMap<String, Object>();
+		product2.put("model", "냉장고");
+		product2.put("maker", "LG");
+		product2.put("price", 200);
+
+		Map<String, Object> product3 = new HashMap<String, Object>();
+		product3.put("model", "TV");
+		product3.put("maker", "삼성");
+		product3.put("price", 300);
+		
+		List<Map<String, Object>> products = Arrays.asList(product1, product2, product3);
+		
+		for(Map<String, Object> product : products) {
+			System.out.println("모델 : " + product.get("model"));
+			System.out.println("제조사 : " + product.get("maker"));
+			System.out.println("가격 : " + product.get("price"));
 		}
 		
 	}
 	
 	public static void main(String[] args) {
-		ex05();
+		ex07();
 	}
 
 }
-
-
-
-
-
-
-
-
-
