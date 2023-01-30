@@ -184,7 +184,9 @@ public class MainClass {
 			person.setHeight(170.5);
 			person.setAlive(false);
 			
-			
+			// 출력
+			oos.writeObject(people);
+			oos.writeObject(person);
 			
 		} catch(IOException e) {
 			e.printStackTrace();
