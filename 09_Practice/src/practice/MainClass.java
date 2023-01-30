@@ -18,7 +18,6 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
-import java.util.regex.Matcher;
 
 public class MainClass {
 
@@ -290,9 +289,8 @@ public class MainClass {
 		
 	}
 	
-	// 문제8. "안녕하세요 반갑습니다" 문장 1개를 출력하시오.
-	// C:\storage\ex08.bin 파일에 출력하시오.
-	// DataInputStream/DataOutputStream을 사용하시오.
+	// 문제8. 키보드로부터 하나의 문장을 입력 받은 뒤 C:\storage\ex08.txt 파일에 출력하시오.
+	// Scanner와 DataOutputStream을 사용하시오.
 	public static void ex08() {
 
 		
@@ -341,11 +339,3 @@ public class MainClass {
 	}
 
 }
-
-
-
-
-
-
-
-
