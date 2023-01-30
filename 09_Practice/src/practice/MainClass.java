@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -298,41 +299,9 @@ public class MainClass {
 		
 	}
 	
-	// 문제8. 키보드로부터 하나의 문장을 입력 받은 뒤 C:\storage\ex08.txt 파일에 출력하시오.
-	// Scanner와 DataOutputStream을 사용하시오.
-	public static void ex08() {
-
-		Scanner sc = new Scanner(System.in);
-		DataOutputStream dos = null;
-		
-		try {
-			
-			dos = new DataOutputStream(new FileOutputStream(new File("C:" + File.separator + "storage", "ex08.txt")));
-			
-			System.out.print("문장 입력 >>> ");
-			String sentence = sc.nextLine();
-			
-			dos.writeUTF(sentence);
-			
-			sc.close();
-			
-		} catch(IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if(dos != null) {
-					dos.close();
-				}
-			} catch(IOException e) {
-				e.printStackTrace();
-			}
-		}
-		
-	}
-	
-	// 문제9. C:\GDJ61\installer\eclipse-jee-2021-03-R-win32-x86_64.zip 파일을
+	// 문제8. C:\GDJ61\installer\eclipse-jee-2021-03-R-win32-x86_64.zip 파일을
 	// C:\storage\eclipse.zip으로 복사하시오.
-	public static void ex09() {
+	public static void ex08() {
 		
 		String sep = File.separator;
 		File from = new File("C:" + sep + "GDJ61" + sep + "installer" + sep, "eclipse-jee-2021-03-R-win32-x86_64.zip");
