@@ -17,10 +17,6 @@ public class MainClass {
 	public static void ex01() {
 		
 		File dir = new File("C:" + File.separator + "storage");
-		if(dir.exists() == false) {
-			dir.mkdirs();
-		}
-		
 		File file = new File(dir, "ex01.txt");
 		
 		FileReader fr = null;
@@ -55,10 +51,6 @@ public class MainClass {
 	public static void ex02() {
 		
 		File dir = new File("C:" + File.separator + "storage");
-		if(dir.exists() == false) {
-			dir.mkdirs();
-		}
-		
 		File file = new File(dir, "ex02.txt");
 		
 		FileReader fr = null;
@@ -112,10 +104,6 @@ public class MainClass {
 		*/
 		
 		File dir = new File("C:" + File.separator + "storage");
-		if(dir.exists() == false) {
-			dir.mkdirs();
-		}
-		
 		File file = new File(dir, "ex03.txt");
 		
 		BufferedReader br = null;
