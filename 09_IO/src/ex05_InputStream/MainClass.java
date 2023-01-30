@@ -247,7 +247,9 @@ public class MainClass {
 			System.out.println(people);
 			System.out.println(person);
 			
-		} catch(Exception e) {
+		} catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch(IOException e) {
 			e.printStackTrace();
 		} finally {
 			try {
