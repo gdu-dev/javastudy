@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -301,7 +302,31 @@ public class MainClass {
 	// Scanner와 DataOutputStream을 사용하시오.
 	public static void ex08() {
 
+		Scanner sc = new Scanner(System.in);
+		DataOutputStream dos = null;
 		
+		try {
+			
+			dos = new DataOutputStream(new FileOutputStream(new File("C:" + File.separator + "storage", "ex08.txt")));
+			
+			System.out.print("문장 입력 >>> ");
+			String sentence = sc.nextLine();
+			
+			dos.writeUTF(sentence);
+			
+			sc.close();
+			
+		} catch(IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(dos != null) {
+					dos.close();
+				}
+			} catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
 		
 	}
 	
