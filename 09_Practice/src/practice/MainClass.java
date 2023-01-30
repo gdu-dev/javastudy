@@ -1,8 +1,12 @@
 package practice;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,6 +18,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
+import java.util.regex.Matcher;
 
 public class MainClass {
 
@@ -285,8 +290,54 @@ public class MainClass {
 		
 	}
 	
+	// 문제8. "안녕하세요 반갑습니다" 문장 1개를 출력하시오.
+	// C:\storage\ex08.bin 파일에 출력하시오.
+	// DataInputStream/DataOutputStream을 사용하시오.
+	public static void ex08() {
+
+		
+		
+	}
+	
+	// 문제9. C:\GDJ61\installer\eclipse-jee-2021-03-R-win32-x86_64.zip 파일을
+	// C:\storage\eclipse.zip으로 복사하시오.
+	public static void ex09() {
+		
+		String sep = File.separator;
+		File from = new File("C:" + sep + "GDJ61" + sep + "installer" + sep, "eclipse-jee-2021-03-R-win32-x86_64.zip");
+		File to = new File("C:" + sep + "storage", "eclipse.zip");
+		
+		BufferedInputStream bin = null;
+		BufferedOutputStream bout = null;
+		
+		try {
+			
+			bin = new BufferedInputStream(new FileInputStream(from));
+			bout = new BufferedOutputStream(new FileOutputStream(to));
+			
+			byte[] b = new byte[1024];  // 1킬로바이트
+			int readByte = 0;
+			while((readByte = bin.read(b)) != -1) {
+				bout.write(b, 0, readByte);  // 배열 b의 인덱스 0부터 readByte개 데이터를 사용한다.
+			}
+			
+			System.out.println("복사 완료되었습니다.");
+			
+		} catch(IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(bout != null) { bout.close(); }
+				if(bin != null) { bin.close(); }
+			} catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
 	public static void main(String[] args) {
-		ex07();
+		ex09();
 	}
 
 }
