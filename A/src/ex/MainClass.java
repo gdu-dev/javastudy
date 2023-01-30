@@ -102,8 +102,8 @@ public class MainClass {
 		
 		Map<Integer, Car> map = new HashMap<Integer, Car>();
 		
-		map.put(1, new Car("벤츠", 100));
-		map.put(2, new Car("BMW", 200));
+		map.put(1, new Car("벤츠", 100));  // key가1, value가 new Car("벤츠", 100)인 Entry가 등록
+		map.put(2, new Car("BMW", 200));   // key가2, value가 new Car("BMW", 200)인 Entry가 등록
 		
 		for(Map.Entry<Integer, Car> entry : map.entrySet()) {
 			System.out.println("Key는" + entry.getKey() + "이고, Value는 " + entry.getValue() + "이다.");
