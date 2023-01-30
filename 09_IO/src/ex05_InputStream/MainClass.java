@@ -1,8 +1,10 @@
 package ex05_InputStream;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class MainClass {
 
@@ -77,8 +79,84 @@ public class MainClass {
 		
 	}
 	
+	public static void ex02_complete() {
+		
+		// 바이트 입력 스트림을 문자 입력 스트림으로 변환하는 InputStreamReader
+		
+		File file = new File("C:" + File.separator + "storage", "ex02.bin");
+		
+		InputStreamReader isr = null;
+		
+		try {
+			
+			isr = new InputStreamReader(new FileInputStream(file));
+			
+			char[] cbuf = new char[4];  // 한 번에 4글자를 읽어 오시오.
+			int readCount = 0;  // 실제로 읽은 글자수를 저장해 두시오.
+			StringBuilder sb = new StringBuilder();
+			
+			while((readCount = isr.read(cbuf)) != -1) {
+				sb.append(cbuf, 0, readCount);  // 배열 cbuf의 인덱스 0부터 readCount개 데이터를 사용한다.
+			}
+			
+			System.out.println(sb.toString());
+			
+		} catch(IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(isr != null) {
+					isr.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
+	public static void ex03() {
+		
+		File file = new File("C:" + File.separator + "storage", "ex03.bin");
+		
+		BufferedInputStream bis = null;
+		
+		try {
+			
+			bis = new BufferedInputStream(new FileInputStream(file));
+			
+			byte[] b = new byte[4];
+			int readByte = 0;
+			StringBuilder sb = new StringBuilder();
+			
+			while((readByte = bis.read(b)) != -1) {
+				sb.append(new String(b, 0, readByte));
+			}
+			
+			System.out.println(sb.toString());
+			
+		} catch(IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(bis != null) {
+					bis.close();
+				}
+			} catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
+	public static void ex03_complete() {
+		
+		
+		
+	}
+	
 	public static void main(String[] args) {
-		ex02();
+		ex03_complete();
 	}
 
 }
