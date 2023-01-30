@@ -1,6 +1,7 @@
 package ex05_InputStream;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -151,7 +152,35 @@ public class MainClass {
 	
 	public static void ex03_complete() {
 		
+		// 버퍼 기반으로 읽기
 		
+		File file = new File("C:" + File.separator + "storage", "ex03.bin");
+		BufferedReader br = null;
+		
+		try {
+			
+			br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+			
+			String line = null;
+			StringBuilder sb = new StringBuilder();
+			
+			while((line = br.readLine()) != null) {
+				sb.append(line + "\n");
+			}
+			
+			System.out.println(sb.toString());
+			
+		} catch(IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(br != null) {
+					br.close();
+				}
+			} catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
 		
 	}
 	
