@@ -2,10 +2,15 @@ package ex05_InputStream;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.util.List;
+
+import ex04_OutputStream.Person;
 
 public class MainClass {
 
@@ -184,18 +189,80 @@ public class MainClass {
 		
 	}
 	
+	public static void ex04() {
+		
+		// String name, int age, double height, boolean isAlive 순으로 값이 저장된 ex04.dat 파일
+		
+		File file = new File("C:" + File.separator + "storage", "ex04.dat");
+		
+		DataInputStream dis = null;
+		
+		try {
+			
+			dis = new DataInputStream(new FileInputStream(file));
+			
+			// 입력(변수 타입에 따라서 메소드가 다름)
+			String name = dis.readUTF();          // writeUTF에 대응
+			int age = dis.readInt();              // writeInt에 대응
+			double height = dis.readDouble();     // writeDouble에 대응
+			boolean isAlive = dis.readBoolean();  // writeBoolean에 대응
+			
+			System.out.println(name);
+			System.out.println(age);
+			System.out.println(height);
+			System.out.println(isAlive);
+			
+		} catch(IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(dis != null) {
+					dis.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
+	public static void ex05() {
+		
+		// Person 객체가 3개 저장되어 있는 (List<Person> 2개, Person 1개) ex05.dat 파일
+		
+		File file = new File("C:" + File.separator + "storage", "ex05.dat");
+		
+		ObjectInputStream ois = null;
+		
+		try {
+			
+			ois = new ObjectInputStream(new FileInputStream(file));
+			
+			// 입력
+			// readObject 메소드는 Object를 반환하므로 적절하게 캐스팅 해야 한다.
+			@SuppressWarnings("unchecked")
+			List<Person> people = (List<Person>)ois.readObject();
+			Person person = (Person)ois.readObject();
+			
+			System.out.println(people);
+			System.out.println(person);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(ois != null) {
+					ois.close();
+				}
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
 	public static void main(String[] args) {
-		ex03_complete();
+		ex05();
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
