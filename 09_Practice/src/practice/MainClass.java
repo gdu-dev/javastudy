@@ -230,9 +230,12 @@ public class MainClass {
 		BufferedReader br = null;
 		BufferedWriter bw = null;
 		
+		long startTime = 0;
+		long stopTime = 0;
+		
 		try {
 			
-			long startTime = System.currentTimeMillis();
+			startTime = System.currentTimeMillis();
 
 			br = new BufferedReader(new FileReader(from));
 			bw = new BufferedWriter(new FileWriter(to));
@@ -242,21 +245,26 @@ public class MainClass {
 				bw.write(line);
 				bw.newLine();
 			}
-			
-			bw.close();
-			br.close();
-			
-			if(from.length() == to.length()) {  // 복사 성공했다면 삭제
-				from.deleteOnExit();
-			}
 
-			long stopTime = System.currentTimeMillis();
-			
-			System.out.println("이동에 걸린 시간 : " + (stopTime - startTime) + "밀리초");
+			stopTime = System.currentTimeMillis();
 			
 		} catch(IOException e) {
 			e.printStackTrace();
-		} 
+		} finally {
+			try {
+				if(bw != null) { bw.close(); }
+				if(br != null) { br.close(); }
+			} catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if(from.length() == to.length()) {  // 복사 성공했다면 삭제
+			from.deleteOnExit();
+		}
+		
+		System.out.println("이동에 걸린 시간 : " + (stopTime - startTime) + "밀리초");
+		
 	}
 	
 	// 문제7. System.in은 키보드로부터 바이트 데이터를 입력 받는 InputStream이다.
@@ -335,7 +343,7 @@ public class MainClass {
 	}
 	
 	public static void main(String[] args) {
-		ex09();
+		ex08();
 	}
 
 }
