@@ -32,7 +32,7 @@ public class ServerMainClass {
 				
 				// 클라이언트의 접속 확인을 위해서 InetSocketAddress를 활용
 				InetSocketAddress clientAddress = (InetSocketAddress)clientSocket.getRemoteSocketAddress();
-				System.out.println("접속된 클라이언트 : " + clientAddress.getHostName());
+				System.out.println("[서버] 접속된 클라이언트 : " + clientAddress.getHostName());
 				
 			}
 			
