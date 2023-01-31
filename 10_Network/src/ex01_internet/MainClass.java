@@ -1,6 +1,9 @@
 package ex01_internet;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -84,6 +87,9 @@ public class MainClass {
 			String referer = con.getRequestProperty("Referer");
 			System.out.println("Referer : " + referer);  // 이전 주소가 나옴
 			
+			// 접속 종료
+			con.disconnect();
+			
 		} catch(MalformedURLException e) {
 			System.out.println("apiURL 주소 오류");
 		} catch(IOException e) {
@@ -92,8 +98,52 @@ public class MainClass {
 		
 	}
 	
+	public static void ex03() {
+		
+		String apiURL = "https://t1.daumcdn.net/daumtop_chanel/op/20200723055344399.png";
+		URL url = null;
+		HttpURLConnection con = null;
+		
+		InputStream in = null;        // Daum 로그를 읽어 들이는 입력 스트림
+		FileOutputStream out = null;  // C:\storage\daum.png로 내보내는 출력 스트림
+		
+		try {
+			
+			url = new URL(apiURL);
+			con = (HttpURLConnection) url.openConnection();
+			
+			int responseCode = con.getResponseCode();
+			if(responseCode == HttpURLConnection.HTTP_OK) {
+				
+				in = con.getInputStream();
+				out = new FileOutputStream("C:" + File.separator + "storage" + File.separator + "daum.png");
+				
+				byte[] b = new byte[10];
+				int readByte = 0;
+				
+				while((readByte = in.read(b)) != -1) {
+					out.write(b, 0, readByte);
+				}
+				
+				System.out.println("다운로드 완료");
+				
+				out.close();
+				in.close();
+				con.disconnect();
+				
+			}
+			
+		} catch(MalformedURLException e) {
+			System.out.println("apiURL 주소 오류");
+		} catch(IOException e) {
+			// 접속 실패 또는 스트림 관련 오류
+			e.printStackTrace();
+		}
+		
+	}
+	
 	public static void main(String[] args) {
-		ex02();
+		ex03();
 	}
 
 }
