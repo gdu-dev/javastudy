@@ -1,5 +1,7 @@
 package ex01_internet;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -37,12 +39,82 @@ public class MainClass {
 		}
 		
 	}
+
+	public static void ex02() {
+		
+		// 웹 접속을 담당하는 HttpURLConnection
+		
+		String apiURL = "https://www.naver.com";
+		URL url = null;
+		HttpURLConnection con = null;
+		
+		try {
+			
+			url = new URL(apiURL);  // MalformedURLException 처리가 필요하다.
+			con = (HttpURLConnection)url.openConnection();  // IOException 처리가 필요하다.
+			
+			/*
+				HTTP 응답 코드 공부하기
+				1. 200 : 정상
+				2. 40X : 잘못된 요청(사용자가 잘못하였음)
+				3. 50X : 서버측 오류(서버가 잘못하였음)
+			*/
+			System.out.println("정상 응답 : " + HttpURLConnection.HTTP_OK);
+			System.out.println("Not Found : " + HttpURLConnection.HTTP_NOT_FOUND);
+			System.out.println("Internal Error : " + HttpURLConnection.HTTP_INTERNAL_ERROR);
+			
+			// apiURL 접속 확인
+			int responseCode = con.getResponseCode();
+			if(responseCode == 200) {
+				System.out.println(apiURL + " 접속 완료");
+			}
+			
+			// 요청 방식(요청 메소드)
+			String requestMethod = con.getRequestMethod();
+			System.out.println("요청 방식 : " + requestMethod);
+			
+			// 컨텐트 타입
+			String contentType = con.getContentType();
+			System.out.println("컨텐트 타입 : " + contentType);
+			
+			// 요청 헤더
+			String userAgent = con.getRequestProperty("User-Agent");
+			System.out.println("User-Agent : " + userAgent);
+			
+			String referer = con.getRequestProperty("Referer");
+			System.out.println("Referer : " + referer);  // 이전 주소가 나옴
+			
+		} catch(MalformedURLException e) {
+			System.out.println("apiURL 주소 오류");
+		} catch(IOException e) {
+			System.out.println("apiURL 접속 오류");
+		}
+		
+	}
 	
 	public static void main(String[] args) {
-		ex01();
+		ex02();
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
