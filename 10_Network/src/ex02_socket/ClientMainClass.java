@@ -1,5 +1,6 @@
 package ex02_socket;
 
+import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Socket;
@@ -22,6 +23,11 @@ public class ClientMainClass {
 			socket.connect(address);  // IOException 처리가 필요하다.
 			
 			System.out.println("[클라이언트] 접속 성공");
+			
+			// 서버가 보낸 welcome 메시지 확인하기
+			DataInputStream in = new DataInputStream(socket.getInputStream());
+			String welcomeMessage = in.readUTF();
+			System.out.println("[클라이언트] " + welcomeMessage);
 			
 		} catch (IOException e) {
 			e.printStackTrace();
