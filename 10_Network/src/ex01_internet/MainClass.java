@@ -2,6 +2,8 @@ package ex01_internet;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
@@ -148,24 +150,29 @@ public class MainClass {
 	
 	public static void ex04() {
 		
-		String apiURL = "https://gdlms.cafe24.com/uflist/curri/10004/bbs/68_63d8848f7d506.txt";
+		String apiURL = "https://gdlms.cafe24.com/uflist/curri/10004/bbs/_63d8848f7d506.txt";
 		URL url = null;
 		HttpURLConnection con = null;
 		
-		InputStreamReader reader = null;
-		FileWriter writer = null;
-		File file = new File("C:" + File.separator + "storage", "다운로드문서.txt");
+		BufferedReader reader = null;
+		BufferedWriter writer = null;
+		File file = null;
 		
 		try {
 			
 			url = new URL(apiURL);
 			con = (HttpURLConnection) url.openConnection();
 			
+			String message = null;
 			int responseCode = con.getResponseCode();
 			if(responseCode == HttpURLConnection.HTTP_OK) {
-				reader = new InputStreamReader(con.getInputStream());
+				reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+				file = new File("C:" + File.separator + "storage", "다운로드문서.txt");
+				message = "다운로드 성공";
 			} else {
-				reader = new InputStreamReader(con.getErrorStream());
+				reader = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+				file = new File("C:" + File.separator + "storage", "다운로드실패.html");
+				message = "다운로드 실패";
 			}
 			
 			StringBuilder sb = new StringBuilder();
@@ -176,14 +183,14 @@ public class MainClass {
 				sb.append(cbuf, 0, readCount);
 			}
 			
-			writer = new FileWriter(file);
+			writer = new BufferedWriter(new FileWriter(file));
 			writer.write(sb.toString());
 			
 			writer.close();
 			reader.close();
 			con.disconnect();
 			
-			System.out.println("다운로드 완료");
+			System.out.println(message);
 			
 		} catch(MalformedURLException e) {
 			System.out.println("apiURL 주소 오류");
