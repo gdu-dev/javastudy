@@ -144,6 +144,12 @@ public class MainClass {
 		
 	}
 	
+	public static void ex04() {
+		
+		String apiURL = "https://gdlms.cafe24.com/uflist/curri/10004/bbs/68_63d8848f7d506.txt";
+		
+	}
+	
 	public static void main(String[] args) {
 		ex03();
 	}
