@@ -228,9 +228,27 @@ public class MainClass {
 		
 	}
 	
+	public static void ex06() {  // 연습
+		
+		// 1시간마다 갱신되는 전국 날씨 정보
+		
+		String apiURL = "http://www.kma.go.kr/XML/weather/sfc_web_map.xml";
+		
+		// storage/sfc_web_map.xml로 다운로드 받기
+		
+		
+	}
 	
 	public static void main(String[] args) {
-		ex05();
+		ex06();
 	}
 
 }
+
+
+
+
+
+
+
+
