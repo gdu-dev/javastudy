@@ -9,9 +9,12 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 
 public class MainClass {
 
@@ -150,7 +153,7 @@ public class MainClass {
 	
 	public static void ex04() {
 		
-		String apiURL = "https://gdlms.cafe24.com/uflist/curri/10004/bbs/_63d8848f7d506.txt";
+		String apiURL = "https://gdlms.cafe24.com/uflist/curri/10004/bbs/68_63d8848f7d506.txt";
 		URL url = null;
 		HttpURLConnection con = null;
 		
@@ -200,8 +203,34 @@ public class MainClass {
 		
 	}
 	
+	public static void ex05() {
+		
+		/*
+			인코딩(암호화) : 원본 데이터를 UTF-8 방식으로 암호화
+			디코딩(복호화) : UTF-8 방식으로 암호화된 데이터를 복원
+		*/
+		
+		String data = "한글 english 12345 !@#$+-";
+		
+		try {
+			
+			// 인코딩
+			String encodeData = URLEncoder.encode(data, "UTF-8");
+			System.out.println(encodeData);
+			
+			// 디코딩
+			String decodeData = URLDecoder.decode(encodeData, "UTF-8");
+			System.out.println(decodeData);
+			
+		} catch(UnsupportedEncodingException e) {
+			System.out.println("인코딩 실패");
+		}
+		
+	}
+	
+	
 	public static void main(String[] args) {
-		ex04();
+		ex05();
 	}
 
 }
