@@ -1,9 +1,10 @@
 package ex01_internet;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -104,8 +105,9 @@ public class MainClass {
 		URL url = null;
 		HttpURLConnection con = null;
 		
-		InputStream in = null;        // Daum 로그를 읽어 들이는 입력 스트림
-		FileOutputStream out = null;  // C:\storage\daum.png로 내보내는 출력 스트림
+		BufferedInputStream in = null;    // Daum 로고를 읽어 들이는 입력 스트림
+		BufferedOutputStream out = null;  // C:\storage\daum.png로 내보내는 출력 스트림
+		File file = new File("C:" + File.separator + "storage", "daum.png");
 		
 		try {
 			
@@ -115,8 +117,8 @@ public class MainClass {
 			int responseCode = con.getResponseCode();
 			if(responseCode == HttpURLConnection.HTTP_OK) {
 				
-				in = con.getInputStream();
-				out = new FileOutputStream("C:" + File.separator + "storage" + File.separator + "daum.png");
+				in = new BufferedInputStream(con.getInputStream());
+				out = new BufferedOutputStream(new FileOutputStream(file));
 				
 				byte[] b = new byte[10];
 				int readByte = 0;
