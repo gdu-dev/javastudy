@@ -54,7 +54,7 @@ public class SeatGroup {
 			return false;  // 예약하기 실패
 		}
 		String name = JOptionPane.showInputDialog("예약자 성함을 입력하세요.");
-		seats[seatNo - 1].setName(name);
+		seats[seatNo - 1].reserve(name);
 		JOptionPane.showMessageDialog(null, seatNo + "번 좌석 예약이 성공했습니다.");
 		return true;  // 예약하기 성공
 	}
@@ -65,7 +65,7 @@ public class SeatGroup {
 		String name = JOptionPane.showInputDialog("취소자 성함을 입력하세요.");
 		for(int i = 0; i < seats.length; i++) {
 			if(seats[i].isOccupied() && seats[i].isMatched(name)) {  // 같은 이름은 없다는 가정으로 풉니다.
-				seats[i].setName(null);
+				seats[i].cancel();
 				JOptionPane.showMessageDialog(null, "예약자 " + name + "의 예약이 취소되었습니다.");
 				return true;
 			}
