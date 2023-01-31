@@ -1,7 +1,9 @@
 package ex02_socket;
 
+import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -39,7 +41,17 @@ public class ServerMainClass {
 				DataOutputStream out = new DataOutputStream(clientSocket.getOutputStream());  // 접속한 클라이언트로 데이터를 보내는 출력 스트림
 				out.writeUTF("어서오세요 환영합니다!");  // writeUTF 메소드를 이용하면 바이트 스트림으로도 한글 깨짐 없이 데이터를 보낼 수 있다.
 				
+				// 클라이언트가 보낸 메시지 확인하기
+				BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+				String line = null;
+				StringBuilder sb = new StringBuilder();
+				while((line = in.readLine()) != null) {
+					sb.append(line + "\n");
+				}
+				System.out.println("[서버] " + sb.toString());
+				
 				// 스트림 종료
+				in.close();
 				out.close();
 				
 				// 클라이언트 접속 종료 (생략 가능)

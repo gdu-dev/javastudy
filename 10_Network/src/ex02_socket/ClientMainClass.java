@@ -1,7 +1,9 @@
 package ex02_socket;
 
+import java.io.BufferedWriter;
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
@@ -28,6 +30,14 @@ public class ClientMainClass {
 			DataInputStream in = new DataInputStream(socket.getInputStream());
 			String welcomeMessage = in.readUTF();
 			System.out.println("[클라이언트] " + welcomeMessage);
+			
+			// 서버에게 메시지 보내기
+			BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+			out.write("반갑습니다!");
+			
+			// 스트림 종료
+			out.close();
+			in.close();
 			
 		} catch (IOException e) {
 			e.printStackTrace();
