@@ -50,10 +50,8 @@ public class JSONMainClass {
 			
 			System.out.println(sb.toString());
 			JSONObject obj = new JSONObject(sb.toString());
-			JSONObject obj2 = obj.getJSONObject("response");
-			JSONObject obj3 = obj2.getJSONObject("body");
-			int totalCount = obj3.getInt("totalCount");
-			System.out.println(totalCount);
+			JSONObject body = obj.getJSONObject("response").getJSONObject("body");
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
