@@ -6,6 +6,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import org.json.JSONObject;
+
 public class JSONMainClass {
 
 	public static void ex01() {
@@ -47,6 +49,11 @@ public class JSONMainClass {
 			con.disconnect();
 			
 			System.out.println(sb.toString());
+			JSONObject obj = new JSONObject(sb.toString());
+			JSONObject obj2 = obj.getJSONObject("response");
+			JSONObject obj3 = obj2.getJSONObject("body");
+			int totalCount = obj3.getInt("totalCount");
+			System.out.println(totalCount);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
