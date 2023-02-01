@@ -6,6 +6,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class JSONMainClass {
@@ -51,7 +52,14 @@ public class JSONMainClass {
 			System.out.println(sb.toString());
 			JSONObject obj = new JSONObject(sb.toString());
 			JSONObject body = obj.getJSONObject("response").getJSONObject("body");
-			
+			JSONArray items = body.getJSONArray("items");
+			for(int i = 0; i < items.length(); i++) {
+				JSONObject item = items.getJSONObject(i);
+				String stationName = item.getString("stationName");
+				String pm10Value = item.getString("pm10Value");
+				String o3Value = item.getString("o3Value");
+				System.out.println(stationName + " : 미세먼지 - " + pm10Value + ", 오존농도 - " + o3Value);
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
