@@ -1,6 +1,10 @@
 package ex03_api;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.net.URLEncoder;
 
 public class MainClass {
@@ -14,36 +18,32 @@ public class MainClass {
 				1) ServiceKey : 인증키
 		*/
 		
-		String encodingKey = "bEQBRPHjt0tZrc7EsL0T8usfsZ1%2BwT%2B5jqamBef%2FErC%2F5ZO6N7nYdRmrwR91bh5d3I1AQeY5qdbJOF6Kv0U1CQ%3D%3D";
+		String serviceKey = "bEQBRPHjt0tZrc7EsL0T8usfsZ1+wT+5jqamBef/ErC/5ZO6N7nYdRmrwR91bh5d3I1AQeY5qdbJOF6Kv0U1CQ==";
 		String apiURL = "http://openapi.airport.co.kr/service/rest/AirportCodeList/getAirportCodeList";
-		apiURL += "?ServiceKey=" + encodingKey;
+		URL url = null;
+		HttpURLConnection con = null;
 		
-		
-		String decodingKey = "bEQBRPHjt0tZrc7EsL0T8usfsZ1+wT+5jqamBef/ErC/5ZO6N7nYdRmrwR91bh5d3I1AQeY5qdbJOF6Kv0U1CQ==";
-		String apiURL = "http://openapi.airport.co.kr/service/rest/AirportCodeList/getAirportCodeList";
 		try {
-			apiURL += "?ServiceKey=" + URLEncoder.encode(decodingKey, "UTF-8");
+			
+			apiURL += "?serviceKey=" + URLEncoder.encode(serviceKey, "UTF-8");
+			url = new URL(apiURL);
+			con = (HttpURLConnection) url.openConnection();
+			
+			int responseCode = con.getResponseCode();
+			System.out.println(responseCode);
+			
 		} catch(UnsupportedEncodingException e) {
 			e.printStackTrace();
+		} catch(MalformedURLException e) {
+			e.printStackTrace();
+		} catch(IOException e) {
+			e.printStackTrace();
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 	}
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		ex01();
 	}
 
 }
