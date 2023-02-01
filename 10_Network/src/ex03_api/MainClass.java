@@ -1,9 +1,11 @@
 package ex03_api;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 
@@ -22,6 +24,8 @@ public class MainClass {
 		String apiURL = "http://openapi.airport.co.kr/service/rest/AirportCodeList/getAirportCodeList";
 		URL url = null;
 		HttpURLConnection con = null;
+		BufferedReader reader = null;
+		BufferedWriter writer = null;
 		
 		try {
 			
@@ -29,14 +33,33 @@ public class MainClass {
 			url = new URL(apiURL);
 			con = (HttpURLConnection) url.openConnection();
 			
-			int responseCode = con.getResponseCode();
-			System.out.println(responseCode);
+			con.setRequestMethod("GET");
+			con.setRequestProperty("Content-Type", "application/xml; charset=UTF-8");
 			
-		} catch(UnsupportedEncodingException e) {
-			e.printStackTrace();
-		} catch(MalformedURLException e) {
-			e.printStackTrace();
-		} catch(IOException e) {
+			int responseCode = con.getResponseCode();
+			if(responseCode == 200) {  // HttpURLConnection.HTTP_OK이 200을 의미한다.
+				reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+			} else {
+				reader = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+			}
+			
+			String line = null;
+			StringBuilder sb = new StringBuilder();
+			while((line = reader.readLine()) != null) {
+				sb.append(line);
+			}
+			
+			reader.close();
+			con.disconnect();
+			
+			File file = new File("C:" + File.separator + "storage", "공항코드정보.xml");
+			writer = new BufferedWriter(new FileWriter(file));
+			writer.write(sb.toString());
+			writer.close();
+			
+			System.out.println("공항코드정보.xml이 생성되었습니다.");
+			
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		
