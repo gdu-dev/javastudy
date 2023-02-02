@@ -205,7 +205,7 @@ public class MainClass {
 	// 이름 입력 >>> 유재석
 	// 처음 뵙겠습니다
 	public static void ex10() {
-		String[] friends = {"전지현", "정우성", "한지민"};
+		String[] friends = {"전지현", "정우성", "한지민"};  // 정렬된 배열 준비
 		String name;
 		Scanner sc = new Scanner(System.in);
 		System.out.print("이름 입력 >>> ");

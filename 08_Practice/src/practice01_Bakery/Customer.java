@@ -1,4 +1,6 @@
-package practice03_Bakery;
+package practice01_Bakery;
+
+import java.util.Map;
 
 // 빵을 구매하는 구매자
 
@@ -18,13 +20,18 @@ public class Customer {
 	// 특정 빵집에 얼마의 돈을 지불한다.
 	public void buy(Bakery bakery, int money) {
 		
+		// 구매 불가
+		if(this.money - money < 0) {
+			throw new RuntimeException("구매 불가");
+		}
+		
 		// bakery에 money를 전달하고 빵과 잔돈을 받는다.
-		BreadAndChange bnc = bakery.sell(money);
+		Map<String, Integer> map = bakery.sell(money);
 		
 		// customer 처리(빵은 늘었고, 돈은 줄었다.)
 		this.money -= money;  // 돈을 냈다.
-		this.breadCount += bnc.getBreadCount();  // 빵을 받았다.
-		this.money += bnc.getChange();  // 잔돈을 받았다.
+		this.breadCount += map.get("sellBread");  // 빵을 받았다.
+		this.money += map.get("change");  // 잔돈을 받았다.
 		
 	}
 	

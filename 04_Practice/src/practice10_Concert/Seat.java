@@ -2,27 +2,45 @@ package practice10_Concert;
 
 public class Seat {
 
-	private String name;  // 시트 예약한 사람이름
+	private Person person;  // 좌석 예약한 사람
 	
-	// 예약한 사람 확인
-	public String getName() {
-		return name;
+	public Seat() {
+		
 	}
+	
+	public Seat(Person person) {
+		super();
+		this.person = person;
+	}
+	
+	// getter
+	public Person getPerson() {
+		return person;
+	}
+	
+	// setter
+	public void setPerson(Person person) {
+		this.person = person;
+	}
+	
 	// 예약
-	public void setName(String name) {
-		this.name = name;
+	public void reserve(Person person) {
+		setPerson(person);
 	}
+	
 	// 예약 취소
 	public void cancel() {
-		name = null;
+		person.setName(null);
 	}
+	
 	// 예약 여부 확인
 	public boolean isOccupied() {
-		return name != null;  // null이 아니면 true 반환(예약되어있으면 true 반환)
+		return person.getName() != null;  // null이 아니면 true 반환(예약되어있으면 true 반환)
 	}
+	
 	// 예약자 확인
 	public boolean isMatched(String name) {
-		return name.equals(this.name);
+		return name.equals(person.getName());
 	}
 	
 }

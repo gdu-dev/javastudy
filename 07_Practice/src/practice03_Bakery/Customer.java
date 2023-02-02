@@ -1,7 +1,5 @@
 package practice03_Bakery;
 
-// 빵을 구매하는 구매자
-
 public class Customer {
 
 	// 필드
@@ -17,6 +15,11 @@ public class Customer {
 	// 구매 메소드
 	// 특정 빵집에 얼마의 돈을 지불한다.
 	public void buy(Bakery bakery, int money) {
+		
+		// 구매 불가
+		if(this.money - money < 0) {
+			throw new RuntimeException("구매 불가");
+		}
 		
 		// bakery에 money를 전달하고 빵과 잔돈을 받는다.
 		BreadAndChange bnc = bakery.sell(money);

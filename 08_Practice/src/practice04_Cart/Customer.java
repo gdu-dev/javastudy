@@ -1,4 +1,4 @@
-package practice03_Cart;
+package practice04_Cart;
 
 public class Customer {
 
@@ -9,7 +9,7 @@ public class Customer {
 	public Customer(int myMoney, int myPoint) {
 		this.myMoney = myMoney;
 		this.myPoint = myPoint;
-		this.myCart = new Cart(10);
+		this.myCart = new Cart();
 	}
 
 	public int getMyMoney() {
@@ -55,9 +55,9 @@ public class Customer {
 		
 		String receipt = "----- 영수증 -----\n";  // 영수증
 		
-		for(int i = 0; i < myCart.getProdCount(); i++) {
+		for(int i = 0; i < myCart.getProductsSize(); i++) {
 			
-			Product product = myCart.getProducts()[i];  // 카트에서 뺀 물건 1개
+			Product product = myCart.getProducts().get(i);  // 카트에서 뺀 물건 1개
 			buyMoney += product.getProdPrice();
 			buyPoint += product.getProdPrice() * 0.05;  // 제품가격의 5%를 포인트로 지급
 			receipt += product.getProdName() + "   " + product.getProdPrice() + "원\n";

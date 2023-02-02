@@ -31,7 +31,7 @@ public class ConcertHall {
 		A 입력 -> seatGroups[2].reserve()
 		*/
 		for(int i = 0; i < seatTypes.length; i++) {
-			if(seatType.equals(seatTypes[i])) {
+			if(seatType.equalsIgnoreCase(seatTypes[i])) {
 				seatGroups[i].reserve();  // boolean 반환값은 사용하지 않았음
 				return;
 			}
@@ -44,7 +44,7 @@ public class ConcertHall {
 		System.out.print("취소할 좌석 타입 입력" + Arrays.toString(seatTypes) + " >>> ");
 		String seatType = sc.next();
 		for(int i = 0; i < seatTypes.length; i++) {
-			if(seatType.equals(seatTypes[i])) {
+			if(seatType.equalsIgnoreCase(seatTypes[i])) {
 				seatGroups[i].cancel();  // boolean 반환값은 사용하지 않았음
 				return;
 			}
@@ -53,10 +53,10 @@ public class ConcertHall {
 	}
 	
 	// 전체 예약 확인
-	public void hallInfo() {
+	public void info() {
 		System.out.println("[" + hallName + "]");
 		for(int i = 0; i < seatGroups.length; i++) {
-			seatGroups[i].reserveInfo();
+			seatGroups[i].info();
 		}
 		System.out.println();
 	}
@@ -64,12 +64,12 @@ public class ConcertHall {
 	// 실행
 	public void manage() {
 		while(true) {
-			System.out.print("1.예약 2.취소 3.예약현황 0.종료 >>> ");
+			System.out.print("\n1.예약 2.취소 3.예약현황 0.종료 >>> ");
 			String choice = sc.next();
 			switch(choice) {
 			case "1": reserve(); break;
 			case "2": cancel(); break;
-			case "3": hallInfo(); break;
+			case "3": info(); break;
 			case "0": return;
 			default: System.out.println("Bad Request");
 			}
