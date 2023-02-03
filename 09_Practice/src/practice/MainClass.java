@@ -302,7 +302,7 @@ public class MainClass {
 	public static void ex08() {
 		
 		String sep = File.separator;
-		File from = new File("C:" + sep + "GDJ61" + sep + "installer" + sep, "eclipse-jee-2021-03-R-win32-x86_64.zip");
+		File from = new File("C:" + sep + "GDJ61" + sep + "installer", "eclipse-jee-2021-03-R-win32-x86_64.zip");
 		File to = new File("C:" + sep + "storage", "eclipse.zip");
 		
 		BufferedInputStream bin = null;

@@ -30,17 +30,17 @@ public class Seat {
 	
 	// 예약 취소
 	public void cancel() {
-		person.setName(null);
+		setPerson(null);
 	}
 	
 	// 예약 여부 확인
 	public boolean isOccupied() {
-		return person.getName() != null;  // null이 아니면 true 반환(예약되어있으면 true 반환)
+		return person != null;  // null이 아니면 true 반환(예약되어있으면 true 반환)
 	}
 	
 	// 예약자 확인
 	public boolean isMatched(String name) {
-		return name.equals(person.getName());
+		return person != null && name.equals(person.getName());
 	}
 	
 }
