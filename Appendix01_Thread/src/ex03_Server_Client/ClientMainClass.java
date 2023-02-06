@@ -21,7 +21,8 @@ public class ClientMainClass {
 			socket.connect( new InetSocketAddress("localhost", 9090) );  // 서버 주소는 localhost이고, 포트 번호는 9090이다.
 			
 			// socket 정보를 이용하는 클라이언트를 스레드로 생성
-			
+			Client client = new Client(socket);  // localhost:9090 서버로 연결할 수 있는 socket 정보를 넘김
+			client.start();  // 클라이언트 스레드 실행
 			
 			sc = new Scanner(System.in);
 			writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
