@@ -14,8 +14,8 @@ package ex01_Thread;
 	Thread 클래스를 상속하는 방법
 	1. extends Thread 처리한다.
 	2. Thread 클래스가 가진 public void run() 메소드를 오버라이드 한다.
-	3. 스레드 객체를 만든다.
-	4. 스레드 객체가 가진 run 메소드는 start 메소드로 호출한다.
+	3. Thread 객체를 만든다.
+	4. Thread 객체가 가진 run 메소드는 start 메소드로 호출한다.
 */
 
 public class Calculator extends Thread {
