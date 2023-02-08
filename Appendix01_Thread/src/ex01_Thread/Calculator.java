@@ -11,11 +11,11 @@ package ex01_Thread;
 */
 
 /*
-	Thread 클래스를 상속하는 방법
-	1. extends Thread 처리한다.
+	Thread 클래스를 상속하는 방법으로 스레드 만들기
+	1. Thread 클래스를 상속 받는다.(extends Thread 처리한다.)
 	2. Thread 클래스가 가진 public void run() 메소드를 오버라이드 한다.
 	3. Thread 객체를 만든다.
-	4. Thread 객체가 가진 run 메소드는 start 메소드로 호출한다.
+	4. Thread 객체가 가진 run 메소드를 start 메소드로 호출한다.
 */
 
 public class Calculator extends Thread {
@@ -29,7 +29,7 @@ public class Calculator extends Thread {
 	@Override
 	public void run() {
 		
-		long n = 2000000000L;
+		long n = 2000000000;  // 20억
 		
 		System.out.println(name + " 계산기가 계산합니다.");
 		

@@ -4,11 +4,11 @@ package ex02_Runnable;
 // new Soldier()를 이용해서 객체를 생성할 때마다 해당 객체는 독립적으로 동작한다.
 
 /*
-	Runnable 인터페이스를 구현하는 방법
-	1. implements Runnable 처리한다.
-	2. Runnable 인터페이스의 public abstract void run(); 추상메소드를 오버라이드 한다.
-	3. Runnable 객체를 만들고, Runnable 객체를 이용해서 Thread 객체를 만든다.
-	4. Thread 객체가 가진 run 메소드는 start 메소드로 호출한다.
+	Runnable 인터페이스를 구현하는 방법으로 스레드 만들기
+	1. Runnable 인터페이스를 구현한다.(implements Runnable 처리한다.)
+	2. Runnable 인터페이스가 가진 public abstract void run(); 추상메소드를 오버라이드 한다.
+	3. Runnable 객체를 만들고, 생성된 Runnable 객체를 이용해서 Thread 객체를 만든다.
+	4. Thread 객체가 가진 run 메소드를 start 메소드로 호출한다.
 */
 
 public class Soldier implements Runnable {

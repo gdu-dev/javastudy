@@ -1,4 +1,4 @@
-package ex03_Server_Client;
+package ex05_Server_Client;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -28,16 +28,16 @@ public class ClientMainClass {
 			writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 			
 			while(true) {
-				System.out.print(">>> ");
 				String message = sc.nextLine();  // 채팅 내용을 입력
 				writer.write(message + "\n");    // 서버가 엔터까지를 입력으로 인식할 수 있도록 \n을 추가해서 보냄
+				writer.flush();                  // BufferedWriter의 버퍼에 남은 내용을 모두 보냄(보내지 않으면 버퍼에 남아 출력이 안 되는 경우가 있음)
 			}
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				writer.close();
+				if(writer != null) writer.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
