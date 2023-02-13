@@ -5,6 +5,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -70,21 +72,24 @@ public class ApiMain {
 									.getJSONObject("items")
 									.getJSONArray("item");
 			
+			List<Accident> list = new ArrayList<Accident>();
 			for(int i = 0; i < itemList.length(); i++) {
+				// 응답 데이터에서 필요한 데이터를 분석(파싱)한다.
 				JSONObject item = itemList.getJSONObject(i);
 				String occrrncDt = item.getString("occrrnc_dt");
 				String occrrncDayCd = item.getString("occrrnc_day_cd");
 				int dthDnvCnt = item.getInt("dth_dnv_cnt");
 				int injpsnCnt = item.getInt("injpsn_cnt");
-				System.out.println(occrrncDt);
-				System.out.println(occrrncDayCd);
-				System.out.println(dthDnvCnt);
-				System.out.println(injpsnCnt);
-				System.out.println("-----");
+				// 응답 데이터에서 추출한 데이터를 하나의 객체(Bean)로 만든다.
+				Accident accident = new Accident();
+				accident.setOccrrncDt(occrrncDt);
+				accident.setOccrrncDayCd(occrrncDayCd);
+				accident.setDthDnvCnt(dthDnvCnt);
+				accident.setInjpsnCnt(injpsnCnt);
+				// 객체를 ArrayList에 저장한다.
+				list.add(accident);
 			}
-			
-			
-		
+					
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
