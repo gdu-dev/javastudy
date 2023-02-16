@@ -99,7 +99,47 @@ public class MainClass {
 	
 	public static void ex03() {
 		
-		admin이 작성한 임의의 게시글을 삽입해 보자
+		Connection con = null;
+		PreparedStatement ps = null;
+		
+		try {
+			
+			Class.forName("oracle.jdbc.OracleDriver");
+			
+			Properties p = new Properties();
+			p.load(new BufferedReader(new FileReader("db.properties")));
+			
+			String url = "jdbc:oracle:thin:@localhost:1521:xe";
+			
+			con = DriverManager.getConnection(url, p);
+			
+			String sql = "INSERT INTO BOARD_TBL(BOARD_NO, MEMBER_NO, TITLE, CONTENT, CREATE_DATE)";
+			sql += " VALUES(BOARD_SEQ.NEXTVAL, ?, ?, ?, SYSDATE)";
+			
+			ps = con.prepareStatement(sql);
+			
+			int memberNo = 1;
+			String title = "오늘은 목요일";
+			String content = "보충은 취소되었소";
+			
+			ps.setInt(1, memberNo);
+			ps.setString(2, title);
+			ps.setString(3, content);
+			
+			int insResult = ps.executeUpdate();
+			
+			System.out.println(insResult + "개의 행이 삽입되었습니다.");
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(ps != null) ps.close();
+				if(con != null) con.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
 	}
 	
@@ -108,14 +148,3 @@ public class MainClass {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
