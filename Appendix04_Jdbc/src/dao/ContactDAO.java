@@ -107,7 +107,28 @@ public class ContactDAO {
 	}
 	
 	
-	
+	// CRUD 메소드 - 2 (연락처 삭제하기)
+	// 1. 반환값   : 0(실패) 또는 1(성공)
+	// 2. 매개변수 : int contact_no 변수에는 삭제할 연락처의 고유 번호가 저장되어 있다.
+	public int deleteContact(int contact_no) {
+		
+		try {
+			
+			con = getConnection();
+			sql = "DELETE FROM CONTACT_TBL WHERE CONTACT_NO = ?";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, contact_no);
+			res = ps.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+		return res;
+		
+	}
 	
 	
 	

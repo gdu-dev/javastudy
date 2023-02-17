@@ -30,6 +30,9 @@ public class ContactController {
 			case "1":
 				service.addContact();
 				break;
+			case "2":
+				service.removeContact();
+				break;
 			case "0":
 				System.out.println("연락처 관리 프로그램이 종료되었습니다.");
 				return;
