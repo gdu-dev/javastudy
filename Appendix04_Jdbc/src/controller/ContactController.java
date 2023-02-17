@@ -9,11 +9,13 @@ public class ContactController {
 
 	
 	/********** 1. field **********/
+	
 	private Scanner sc;
 	private ContactService service;
 	
 	
 	/********** 2. constructor **********/
+	
 	public ContactController() {
 		sc = new Scanner(System.in);
 		service = new ContactServiceImpl();
