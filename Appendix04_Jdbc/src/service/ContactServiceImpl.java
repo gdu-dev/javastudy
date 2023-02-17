@@ -71,7 +71,53 @@ public class ContactServiceImpl implements ContactService {
 		
 	}
 	
-	
+	@Override
+	public void modifyContact() {
+		
+		System.out.println("===== 연락처 수정하기 =====");
+		
+		System.out.print("수정할 연락처 이름 >>> ");
+		String name = sc.next();
+		
+		List<ContactDTO> contactList = dao.selectContactsByName(name);
+		System.out.println("<<< 조회된 연락처 목록 >>>");
+		for(ContactDTO contact : contactList) {
+			System.out.println(contact);
+		}
+		
+		System.out.print("수정할 연락처 No >>> ");
+		int contact_no = sc.nextInt();
+		ContactDTO contact = dao.selectContactByNo(contact_no);  // 수정하기 전의 내용을 저장한 contact 객체
+		
+		System.out.print("수정할 항목 선택(1.이름  2.전화  3.이메일  4.주소) >>> ");
+		String choice = sc.next();
+		switch(choice) {
+		case "1":
+			System.out.print("수정할 이름 입력 >>> ");
+			contact.setName( sc.next() );
+			break;
+		case "2":
+			System.out.print("수정할 전화 입력 >>> ");
+			contact.setTel( sc.next() );
+			break;
+		case "3":
+			System.out.print("수정할 이메일 입력 >>> ");
+			contact.setEmail( sc.next() );
+			break;
+		case "4":
+			System.out.println("수정할 주소 입력 >>> ");
+			contact.setAddress( sc.next() );
+			break;
+		default:
+			System.out.println("잘못된 입력입니다. 수정을 취소합니다.");
+			return;
+		}
+		
+		int modifyResult = dao.updateContact(contact);
+		
+		System.out.println(modifyResult + "개의 연락처가 수정되었습니다.");
+		
+	}
 	
 	
 	
