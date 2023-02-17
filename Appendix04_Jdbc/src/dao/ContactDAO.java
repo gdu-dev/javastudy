@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import dto.ContactDTO;
@@ -131,7 +133,45 @@ public class ContactDAO {
 	}
 	
 	
-	
+	// CRUD 메소드 - 3 (이름을 이용한 연락처 조회하기)
+	// 1. 반환값   : List<ContactDTO>
+	// 2. 매개변수 : String name 변수에는 조회할 연락처의 이름이 저장되어 있다.
+	public List<ContactDTO> selectContactsByName(String name) {
+		
+		List<ContactDTO> contactList = new ArrayList<ContactDTO>();
+		
+		try {
+			
+			con = getConnection();
+			sql =  "SELECT CONTACT_NO, NAME, TEL, EMAIL, ADDRESS";
+			sql += "  FROM CONTACT_TBL";
+			sql += " WHERE NAME = ?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, name);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				ContactDTO contact = new ContactDTO();
+				contact.setContact_no( rs.getInt("CONTACT_NO") );
+				contact.setName( rs.getString("NAME") );
+				contact.setTel( rs.getString("TEL") );
+				contact.setEmail( rs.getString("EMAIL") );
+				contact.setAddress( rs.getString("ADDRESS") );
+				
+				contactList.add(contact);
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+		return contactList;
+		
+	}
 	
 	
 	

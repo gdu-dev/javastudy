@@ -1,5 +1,6 @@
 package service;
 
+import java.util.List;
 import java.util.Scanner;
 
 import dao.ContactDAO;
@@ -51,6 +52,15 @@ public class ContactServiceImpl implements ContactService {
 	public void removeContact() {
 		
 		System.out.println("===== 연락처 삭제하기 =====");
+		
+		System.out.print("삭제할 연락처 이름 >>> ");
+		String name = sc.next();
+		
+		List<ContactDTO> contactList = dao.selectContactsByName(name);
+		System.out.println("<<< 조회된 연락처 목록 >>>");
+		for(ContactDTO contact : contactList) {
+			System.out.println(contact);
+		}
 		
 		System.out.print("삭제할 연락처 No >>> ");
 		int contact_no = sc.nextInt();
