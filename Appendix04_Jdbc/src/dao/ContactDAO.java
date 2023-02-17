@@ -241,6 +241,45 @@ public class ContactDAO {
 	}
 	
 	
+	// CRUD 메소드 - 6 (전체 연락처 조회하기)
+	// 1. 반환값   : List<ContactDTO>
+	// 2. 매개변수 : 없다.
+	public List<ContactDTO> selectAllContacts() {
+		
+		List<ContactDTO> contactList = new ArrayList<ContactDTO>();
+		
+		try {
+			
+			con = getConnection();
+			sql =  "SELECT CONTACT_NO, NAME, TEL, EMAIL, ADDRESS";
+			sql += "  FROM CONTACT_TBL";
+			sql += " ORDER BY CONTACT_NO DESC";
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				ContactDTO contact = new ContactDTO();
+				contact.setContact_no( rs.getInt("CONTACT_NO") );
+				contact.setName( rs.getString("NAME") );
+				contact.setTel( rs.getString("TEL") );
+				contact.setEmail( rs.getString("EMAIL") );
+				contact.setAddress( rs.getString("ADDRESS") );
+				
+				contactList.add(contact);
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+		return contactList;
+		
+	}
+	
 	
 }
 

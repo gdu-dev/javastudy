@@ -119,9 +119,31 @@ public class ContactServiceImpl implements ContactService {
 		
 	}
 	
+	@Override
+	public void findContactsByName() {
+		
+		System.out.println("===== 연락처 조회하기 =====");
+		
+		System.out.print("조회할 연락처 이름 >>> ");
+		String name = sc.next();
+		
+		List<ContactDTO> contactList = dao.selectContactsByName(name);
+		for(ContactDTO contact : contactList) {
+			System.out.println(contact);
+		}
+		
+	}
 	
-	
-	
+	@Override
+	public void findAllContacts() {
+		
+		System.out.println("===== 전체 연락처 목록 =====");
+		
+		for(ContactDTO contact : dao.selectAllContacts()) {
+			System.out.println(contact);
+		}
+		
+	}
 	
 	
 	
