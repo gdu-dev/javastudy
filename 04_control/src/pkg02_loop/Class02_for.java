@@ -26,6 +26,14 @@ public class Class02_for {
       System.out.println("실행문");
     }
     
+    // for 중첩
+    for(int day = 1; day <= 5; day++) {
+      System.out.println(day + "일차");
+      for(int hour = 1; hour <= 8; hour++) {
+        System.out.println(hour + "교시");
+      }
+    }
+    
   }
 
 }

@@ -66,8 +66,132 @@ public class MainClass {
     
   }
   
+  public static void method5() {
+  
+    // 2x1=2
+    // 2x2=4
+    // ...
+    // 5x5=25
+    
+    outer:  // 라벨
+    for(int dan = 2; dan <= 9; dan++) {
+      for(int n = 1; n <= 9; n++) {
+        System.out.println(dan + "x" + n + "=" + dan * n);
+        if(dan == 5 && n == 5) {
+          break outer;
+        }
+      }
+    }
+    
+  }
+  
+  public static void method6() {
+    
+    // 2x1=2  3x1=3  ...  9x1=9
+    // 2x2=4  3x2=6  ...  9x2=18
+    // ...
+    // 2x9=18 3x9=27 ...  9x9=81 
+    
+    for(int n = 1; n <= 9; n++) {
+      for(int dan = 2; dan <= 9; dan++) {
+        System.out.print(dan + "x" + n + "=" + dan * n + "\t");
+      }
+      System.out.println();  // 줄 바꿈
+    }
+    
+  }
+  
+  public static void method7() {
+
+    /*
+     * 삼각별 출력하기-1
+     *        star=12345 
+     * row=1       * 
+     * row=2       ** 
+     * row=3       *** 
+     * row=4       **** 
+     * row=5       *****
+     * 
+     * row=1, star=1~1 
+     * row=2, star=1~2 
+     * row=3, star=1~3 
+     * row=4, star=1~4 
+     * row=5, star=1~5
+     */
+
+    
+    
+  }
+  
+  public static void method8() {
+    
+    /*
+     * 삼각별 출력하기-2
+     *        star=12345
+     * row=1       *****
+     * row=2       ****
+     * row=3       ***
+     * row=4       **
+     * row=5       *
+     * 
+     * row=1, star=1~5
+     * row=2, star=1~4
+     * row=3, star=1~3
+     * row=4, star=1~2
+     * row=5, star=1~1
+     */
+    
+    
+    
+  }
+  
+  public static void method9() {
+    
+    /*
+     * 삼각별 출력하기-3
+     * space/star=123456789
+     * row=1          *
+     * row=2         ***
+     * row=3        *****
+     * row=4       *******
+     * row=5      *********
+     * 
+     * row=1, space=1~4, star=5~5
+     * row=2, space=1~3, star=4~6
+     * row=3, space=1~2, star=3~7
+     * row=4, space=1~1, star=2~8
+     * row=5, space=1~0, star=1~9
+     */
+    
+    
+
+  }
+  
+  public static void method10() {
+    
+    /*
+     * 삼각별 출력하기-4
+     * space/star=123456789
+     * row=1      *********
+     * row=2       *******
+     * row=3        *****
+     * row=4         ***
+     * row=5          *
+     * 
+     * row=1, space=1~0, star=1~9
+     * row=2, space=1~1, star=2~8
+     * row=3, space=1~2, star=3~7
+     * row=4, space=1~3, star=4~6
+     * row=5, space=1~4, star=5~5
+     */
+    
+    
+    
+  }  
+  
+  
   public static void main(String[] args) {
-    method4();
+    method5();
   }
 
 }
