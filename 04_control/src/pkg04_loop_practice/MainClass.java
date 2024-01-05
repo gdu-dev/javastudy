@@ -105,7 +105,7 @@ public class MainClass {
 
     /*
      * 삼각별 출력하기-1
-     *        star=12345 
+     *        star=12345
      * row=1       * 
      * row=2       ** 
      * row=3       *** 
@@ -117,9 +117,16 @@ public class MainClass {
      * row=3, star=1~3 
      * row=4, star=1~4 
      * row=5, star=1~5
+     * 
+     * row=1~5, star=1~row
      */
 
-    
+    for(int row = 1; row <= 5; row++) {
+      for(int star = 1; star <= row; star++) {
+        System.out.print("*");
+      }
+      System.out.println();
+    }
     
   }
   
@@ -139,9 +146,16 @@ public class MainClass {
      * row=3, star=1~3
      * row=4, star=1~2
      * row=5, star=1~1
+     * 
+     * row=1~5, star=1~6-row
      */
     
-    
+    for(int row = 1; row <= 5; row++) {
+      for(int star = 1; star <= 6 - row; star++) {
+        System.out.print("*");
+      }
+      System.out.println();
+    }
     
   }
   
@@ -161,9 +175,19 @@ public class MainClass {
      * row=3, space=1~2, star=3~7
      * row=4, space=1~1, star=2~8
      * row=5, space=1~0, star=1~9
+     * 
+     * row=1~5, space=1~5-row, star=6-row~row+4
      */
     
-    
+    for(int row = 1; row <= 5; row++) {
+      for(int space = 1; space <= 5 - row; space++) {
+        System.out.print(" ");
+      }
+      for(int star = 6 - row; star <= row + 4; star++) {
+        System.out.print("*");
+      }
+      System.out.println();
+    }
 
   }
   
@@ -183,15 +207,24 @@ public class MainClass {
      * row=3, space=1~2, star=3~7
      * row=4, space=1~3, star=4~6
      * row=5, space=1~4, star=5~5
+     * 
+     * row=1~5, space=1~row-1, star=row~10-row
      */
     
+    for(int row = 1; row <= 5; row++) {
+      for(int space = 1; space <= row - 1; space++) {
+        System.out.print(" ");
+      }
+      for(int star = row; star <= 10 - row; star++) {
+        System.out.print("*");
+      }
+      System.out.println();
+    }
     
-    
-  }  
-  
+  }
   
   public static void main(String[] args) {
-    method5();
+    method10();
   }
 
 }
