@@ -58,7 +58,25 @@ public class MainClass {
     int[] a = new int[] {10, 20, 30, 0, 0, 0};
     int[] b = new int[] {40, 50, 60};
     
+    /*
+     * a[3] = b[0];
+     * a[4] = b[1];
+     * a[5] = b[2];
+     */
+    for(int i = 0; i < b.length; i++) {
+      a[3 + i] = b[i];
+    }
     
+    /*
+     * 배열 복사를 위한 자바 표준 API
+     *   System.arraycopy(b, 0, a, 3, b.length)
+     *   1) 복사시작요소   : b[0] 요소를 a[3] 요소로 복사
+     *   2) 복사할요소개수 : b.length개 복사
+     */
+    
+    for(int i = 0; i < a.length; i++) {
+      System.out.println(a[i]);
+    }
     
   }
   
@@ -84,16 +102,20 @@ public class MainClass {
     // 2진수                    //   ┌---------------------------------------┐
     int[] binary = new int[10]; //   | 1 | 1 | 0 | 0 | 0 | 1 | 0 | 0 | 0 | 0 |
                                 //   └---------------------------------------┘
+    int i = 0;
+    while(number > 0) {
+      binary[i++] = number % 2;
+      number /= 2;  // number = number / 2;
+    }
     
-    
+    for(int j = i - 1; j >= 0; j--) {
+      System.out.print(binary[j]);
+    }
     
   }
   
-  
-  
-  
   public static void main(String[] args) {
-    method3();
+    method5();
   }
 
 }

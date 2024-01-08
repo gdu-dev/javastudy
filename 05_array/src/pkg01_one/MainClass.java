@@ -85,8 +85,68 @@ public class MainClass {
     
   }
   
+  public static void method4() {
+    
+    /*
+     * 배열의 구조
+     * 1. 배열의 타입은 참조 타입(reference type)이다.
+     * 2. 배열의 모든 요소는 순서대로 메모리의 연속된 공간을 할당받는다.
+     * 
+     *    int[] a = new int[] {10, 20, 30};
+     *    -------   ----------------------
+     *    stack     heap
+     * 
+     *    ┌--------------┐
+     *   a│  0x10000000  │
+     *    │--------------│
+     *    │     ...      │
+     *    │--------------│
+     *    │      10      │0x10000000
+     *    │--------------│
+     *    │      20      │0x10000004
+     *    │--------------│
+     *    │      30      │0x10000008
+     *    └--------------┘
+     */
+    
+    /*
+     * 배열의 길이를 늘이는 방법
+     * 1. 새로운 배열을 만든다.
+     * 2. 기존 배열 요소를 모두 옮긴다.
+     * 3. 새로운 배열의 참조값을 가져온다.
+     */
+    
+    int[] a = new int[] {10, 20, 30};
+    
+    int[] b = new int[10];
+    
+    for(int i = 0; i < a.length; i++) {
+      b[i] = a[i];
+    }
+    
+    a = b;
+    
+    for(int i = 0; i < a.length; i++) {
+      System.out.println(a[i]);  // 10 20 30 0 0 0 0 0 0 0 
+    }
+    
+  }
+  
+  public static void method5(){
+    
+    // advanced for
+    // for(변수 : 배열) { }
+    
+    int[] arr = new int[] {10, 20, 30, 40, 50};
+    
+    for(int number : arr) {
+      System.out.println(number);
+    }
+    
+  }
+  
   public static void main(String[] args) {
-    method3();
+    method5();
   }
 
 }
