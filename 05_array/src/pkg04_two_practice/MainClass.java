@@ -7,6 +7,25 @@ public class MainClass {
     // 구구단 결과를 2차원 배열에 저장하기
     int[][] arr = new int[8][9];
     
+    /*
+     * arr[0][0]  <-  2 * 1
+     * arr[0][1]  <-  2 * 2
+     * ...
+     * arr[1][0]  <-  3 * 1
+     * arr[1][1]  <-  3 * 2
+     * ...
+     * --------------------
+     * arr[i][j]  <-  (i + 2) * (j + 1)
+     */
+    
+    for(int i = 0; i < arr.length; i++) {
+      for(int j = 0; j < arr[i].length; j++) {
+        arr[i][j] = (i + 2) * (j + 1);
+        System.out.print(String.format("%3d", arr[i][j]));
+      }
+      System.out.println();
+    }
+    
   }
   
   public static void method2() {
@@ -21,6 +40,14 @@ public class MainClass {
       {4, 2, 2, 1}
     };
     
+    for(int i = 0; i < apt.length; i++) {
+      int total = 0;
+      for(int j = 0; j < apt[i].length; j++) {
+        total += apt[i][j];
+      }
+      System.out.println((i + 1) + "층 : " + total + "명");
+    }
+    
   }
   
   public static void method3() {
@@ -34,6 +61,22 @@ public class MainClass {
      * 0 0 1 0 0          0 0 0 0 1
      * 0 0 1 0 0          0 0 0 0 1
      */
+    /*
+     * [0][0]      [0][4]
+     * [0][1]      [1][4]
+     * [0][2]      [2][4]
+     * [0][3]      [3][4]
+     * [0][4]      [4][4]
+     * 
+     * [1][0]      [0][3]
+     * [1][1]      [1][3]
+     * [1][2]      [2][3]
+     * [1][3]      [3][3]
+     * [1][4]      [4][3]
+     * ...
+     * ------------------
+     * [i][j]  ->  [j][4-i]
+     */ 
     
     /*
      * 90도 회전하기
@@ -51,11 +94,25 @@ public class MainClass {
     
     int[][] rotate = new int[5][5];
     
+    for(int i = 0; i < t.length; i++) {
+      for(int j = 0; j < t[i].length; j++) {
+        rotate[j][4-i] = t[i][j];
+      }
+    }
+
+    t = rotate;
+    
+    for(int i = 0; i < t.length; i++) {
+      for(int j = 0; j < t[i].length; j++) {
+        System.out.print(t[i][j]);
+      }
+      System.out.println();
+    }
     
   }
   
   public static void main(String[] args) {
-    method1();
+    method3();
   }
 
 }
