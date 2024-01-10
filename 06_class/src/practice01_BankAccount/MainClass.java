@@ -19,7 +19,7 @@ public class MainClass {
     account1.deposit(100000);  // 10만원 입금 (성공)
     account1.deposit(-50000);  // -5만원 입금 (실패)
     
-    int money;
+    long money;
     money = account1.withdrawal(100000);  // 10만원 출금 (성공)
     System.out.println(money);            // 100000 (출금된 금액 출력)
     money = account1.withdrawal(200000);  // 20만원 출금 (실패)
