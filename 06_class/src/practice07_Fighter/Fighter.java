@@ -37,7 +37,7 @@ public class Fighter {
   
   // punch()
   public void punch(Fighter other, int power) {
-    System.out.println(name + "의 펀치");
+    System.out.println(name + "의 펀치 공격");
     if(power >= other.getHp()) {
       other.setHp(0);
     } else {
