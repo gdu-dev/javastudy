@@ -67,7 +67,7 @@ public class BankAccount {
       retValue = money;
       
     } catch(RuntimeException e) {
-      System.out.println(e.getMessage());      
+      System.out.println(e.getMessage());
     }
     
     return retValue;
