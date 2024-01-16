@@ -31,9 +31,57 @@ public class MainClass {
     }
     
   }
+
+  public static void method3() {
+    
+    String[] userInputs = {"10", "20", "1.5", "2.5", "30"};
+    
+    for (int i = 0; i < userInputs.length; i++) {
+      
+      try {
+        
+        int number = Integer.parseInt(userInputs[i]);
+        System.out.println(number);
+        
+      } catch(NumberFormatException e) {
+        
+        System.out.println(userInputs[i] + "는 정수가 아닙니다.");
+        
+      }
+      
+    }
+    
+  }
+  
+  public static void method4() {
+    
+    // 다중 catch 블록
+    
+    String[] userInputs = {"10", "20", "15", "25", "30"};
+    
+    try {
+      
+      for(int i = 0; i < 6; i++) {
+        
+        int number = Integer.parseInt(userInputs[i]);
+        System.out.println(number);
+        
+      }
+      
+    } catch(ArrayIndexOutOfBoundsException e) {
+      
+      System.out.println("사용할 수 없는 인덱스가 사용되었습니다.");
+      
+    } catch(RuntimeException e) {
+      
+      System.out.println("정수만 처리할 수 있습니다.");
+      
+    }
+
+  }
   
   public static void main(String[] args) {
-    method2();
+    method4();
   }
 
 }
