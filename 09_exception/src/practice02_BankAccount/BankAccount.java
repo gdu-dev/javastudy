@@ -34,26 +34,23 @@ public class BankAccount {
     this.balance = balance;
   }
   
-  public void deposit(long money) {
+  public void deposit(long money) throws RuntimeException {
     
     if(money <= 0) {
-      System.out.println(money + "원 입금 불가");
-      return;
+      throw new RuntimeException(money + "원 입금 불가");
     }
     
     balance += money;
     
   }
   
-  public long withdrawal(long money) {
+  public long withdrawal(long money) throws RuntimeException {
     
     if(money <= 0) {
-      System.out.println(money + "원 출금 불가");
-      return 0L;
+      throw new RuntimeException(money + "원 출금 불가");
     }
     if(money > balance) {
-      System.out.println("잔액 부족");
-      return 0L;
+      throw new RuntimeException("잔액 부족");
     }
     
     balance -= money;
@@ -61,7 +58,7 @@ public class BankAccount {
     
   }
   
-  public void transfer(BankAccount account, long money) {
+  public void transfer(BankAccount account, long money) throws RuntimeException {
     
     // 내 통장에서 출금 -> 출금된 금액이 반환 -> 네 통장에 입금
     
