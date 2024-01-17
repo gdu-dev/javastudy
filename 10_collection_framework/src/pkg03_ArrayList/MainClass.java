@@ -76,8 +76,30 @@ public class MainClass {
     
   }
   
+  public static void method4() {
+    
+    List<String> seasons = new ArrayList<String>();
+    
+    seasons.add("봄");
+    seasons.add("여름");
+    seasons.add("파인애플");
+    seasons.add("피자");
+    seasons.add("겨울");
+    
+    // 요소 수정
+    seasons.set(2, "가을");
+    
+    // 요소 삭제
+    String removeItem = seasons.remove(3);
+    System.out.println(removeItem);
+    
+    System.out.println(seasons);
+    
+  }
+  
+  
   public static void main(String[] args) {
-    method3();
+    method4();
   }
 
 }
