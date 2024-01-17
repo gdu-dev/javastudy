@@ -2,6 +2,7 @@ package pkg05_HashMap;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 public class MainClass {
@@ -64,11 +65,45 @@ public class MainClass {
     for(String key : keys) {
       System.out.println(key + ": " + map.get(key));
     }
+     
+  }
+
+  public static void method4() {
+    
+    // Entry 전체를 Set 로 만들 수 있다.
+    
+    Map<String, Object> map = Map.of("name", "홍길동"
+                                   , "age", 10
+                                   , "isMarried", false);
+    
+    Set<Entry<String, Object>> entrySet = map.entrySet();
+    for(Entry<String, Object> entry : entrySet) {
+      System.out.println(entry.getKey() + ": " + entry.getValue());
+    }
+    
+  }
+  
+  public static void method5() {
+    
+    Map<String, Object> map = new HashMap<String, Object>();
+
+    // 처음 입력되는 Key 는 추가된다.
+    map.put("name", "홍길동");
+    map.put("age", 10);
+    map.put("isMarried", false);
+    
+    // 다시 입력되는 Key 는 수정을 의미한다.
+    map.put("age", 20);
+    
+    // 삭제
+    map.remove("isMarried");
+    
+    System.out.println(map);
     
   }
   
   public static void main(String[] args) {
-    method3();
+    method5();
   }
 
 }
