@@ -241,7 +241,7 @@ public class Class01_String {
   }
   
   public static void main(String[] args) {
-    method15();
+    practice02();
   }
 
   public static void practice01() {
@@ -254,12 +254,46 @@ public class Class01_String {
     
   }
   
-  
-  
-  
-  
-  
-  
-  
+  public static void practice02() {
+    
+    // 앞으로 읽어도 뒤로 읽어도 동일한 문자열 판단하기
+    
+    String word = "wertyuiokl;o;p";
+    
+    // 1. 한 글자씩 비교하기
+    /*
+     * 1) 5글자인 경우 비교할 문자들의 인덱스 비교
+     *    앞    뒤
+     *    0     4
+     *    1     3
+     * 
+     * 2) 6글자인 경우 비교할 문자들의 인덱스 비교
+     *    앞    뒤
+     *    0     5
+     *    1     4
+     *    2     3
+     *    
+     * 3) n 글자인 경우 비교할 문자들의 인덱스 비교
+     *    앞    뒤
+     *    i     n - i - 1
+     */
+    
+    boolean result = true;
+    for(int i = 0, length = word.length(); i < length / 2; i++) {
+      if(word.charAt(i) != word.charAt(length - i - 1)) {
+        result = false;
+        break;
+      }
+    }
+    System.out.println(result);
+    
+    // 2. 거꾸로 문자열을 만들어서 비교하기
+    String reverse = "";
+    for(int i = word.length() - 1; i >= 0; i--) {
+      reverse += word.charAt(i);
+    }
+    System.out.println(word.equals(reverse));
+    
+  }
   
 }
