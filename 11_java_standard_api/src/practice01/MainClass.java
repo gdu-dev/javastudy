@@ -1,6 +1,8 @@
 package practice01;
 
+import java.time.LocalDate;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.UUID;
 
 public class MainClass {
@@ -28,7 +30,30 @@ public class MainClass {
     // 나이 : 현재년도 - 태어난년도
     // 성별 : 하이픈 뒤의 숫자가 1,3이면 남, 2,4이면 여
     
-    return null;
+    // 현재년도
+    int nowYear = LocalDate.now().getYear();
+    
+    // 태어난년도
+    int birthYear = 0;
+    
+    // 하이픈 뒤의 숫자
+    int afterHyphen = Integer.parseInt(id.substring(7, 8));
+    
+    switch(afterHyphen) {
+    case 1:
+    case 2:
+      birthYear = 1900 + Integer.parseInt(id.substring(0, 2));
+      break;
+    case 3:
+    case 4:
+      birthYear = 2000 + Integer.parseInt(id.substring(0, 2));
+      break;
+    }
+    
+    String[] genders = {"여자", "남자"};
+    
+    return Map.of("age", nowYear - birthYear
+                , "gender", genders[afterHyphen % 2]);
     
   }
 
@@ -58,13 +83,12 @@ public class MainClass {
   
   public static void main(String[] args) {
     
-    method1();
+    // method1();
     
-    Map<String, Object> map = method2("140101-3123456");
-    // map을 for문으로 돌려서 확인하기
-    
-    
-    
+    Map<String, Object> map = method2("140101-4123456");
+    for(Entry<String, Object> entry : map.entrySet()) {
+      System.out.println(entry.getKey() + ": " + entry.getValue());
+    }
     
   }
   
