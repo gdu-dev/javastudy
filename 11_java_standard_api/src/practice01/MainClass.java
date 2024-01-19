@@ -105,6 +105,15 @@ public class MainClass {
     // 출금 전 18원, 5회 출금액 17원, 출금 후 1원
     // 출금 전 1원, 6회 출금액 1원, 출금 후 0원
   
+    int balance = 5000;
+    int count = 0;
+    while(balance > 0) {
+      // 출금액 : 1 <= 난수 <= balance
+      int money = (int)(Math.random() * balance + 1);
+      count++;
+      System.out.println("출금 전 " + balance + "원, " + count + "회 출금액 " + money + "원, 출금 후 " + (balance -= money) + "원");
+    }
+    
   }
   
   public static void method5() {
@@ -117,6 +126,19 @@ public class MainClass {
     // 실행예시5) "모", "윷", "도", 10칸 이동한다.
     
     String[] yuts = {"", "도", "개", "걸", "윷", "모"};
+    
+    StringBuilder builder = new StringBuilder();
+    int move = 0;
+    int totalMove = 0;
+    do {
+      move = (int)(Math.random() * 5 + 1);  // 윷 던지는 코드
+      totalMove += move;
+      builder.append(yuts[move]);
+      builder.append(", ");
+    } while(move >= 4);
+    builder.append(totalMove).append("칸 이동한다.");
+    
+    System.out.println(builder.toString());
     
   }
 
@@ -206,7 +228,7 @@ public class MainClass {
 //      System.out.println(entry.getKey() + ": " + entry.getValue());
 //    }
     
-    method3();
+    method5();
     
   }
   
