@@ -27,23 +27,34 @@ public class Company {
   }
   
   // 고용
-  public void hire(Employee employee) {
-    
+  public void hire(Employee employee) throws RuntimeException {
+    if(employee == null) {
+      throw new RuntimeException("고용될 사원 정보가 올바르지 않습니다.");
+    }
+    employees.add(employee);
   }
   
   // 해고
-  public void fire() {
+  public void fire(int empNo) {
     
   }
   
   // 조회
-  public void search() {
+  public void search(int empNo) {
     
   }
   
   // 전체 조회
-  public void searchAll() {
-    
+  public void searchAll() throws RuntimeException {
+    if(employees.isEmpty()) {
+      throw new RuntimeException("조회할 사원이 없습니다.");
+    }
+    System.out.println("전체 사원 명단");
+    System.out.println("-------------");
+    for(Employee employee : employees) {
+      employee.info();
+      System.out.println("-------------");
+    }
   }
   
 }
