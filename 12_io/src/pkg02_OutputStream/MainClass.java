@@ -4,6 +4,9 @@ import java.io.BufferedOutputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.util.Arrays;
+import java.util.List;
 
 public class MainClass {
 
@@ -27,6 +30,16 @@ public class MainClass {
    * 1. 자바 변수 값을 출력하는 바이트 출력 스트림이다.
    * 2. 보조 스트림으로 메인 스트림과 함게 사용해야 한다.
    * 3. 타입 별로 전용 메소드가 존재한다.
+   */
+  
+  /*
+   * java.io.ObjectOutputStream
+   * 1. 객체를 출력하는 바이트 출력 스트림이다.
+   * 2. 보조 스트림으로 메인 스트림과 함게 사용해야 한다.
+   * 3. 객체를 출력 스트림으로 전송하기 위해서는 직렬화 과정이 필요하다.
+   * 4. 직렬화 방법
+   *    1) 직렬화할 클래스는 java.io.Serializable 인터페이스를 구현한다. (필수)
+   *    2) long serialVersionUID 필드 값을 임의로 생성한다.
    */
   
   public static void method1() {
@@ -207,8 +220,45 @@ public class MainClass {
     
   }
   
+  public static void method5() {
+    
+    File dir = new File("\\storage");
+    if(!dir.exists()) {
+      dir.mkdirs();
+    }
+    
+    File file = new File(dir, "sample5.dat");
+    
+    // 객체 출력 스트림 선언
+    ObjectOutputStream out = null;
+    
+    try {
+      
+      // 객체 출력 스트림 생성
+      out = new ObjectOutputStream(new FileOutputStream(file));
+      
+      // 출력할 객체
+      Employee employee = new Employee(1, "홍길동");
+      List<Employee> employees = Arrays.asList(new Employee(2, "홍길순"), new Employee(3, "홍순자"));
+      
+      // 객체 출력
+      out.writeObject(employee);
+      out.writeObject(employees);
+      
+      // 객체 출력 스트림 닫기
+      out.close();
+
+      // 확인
+      System.out.println(file.length() + "바이트 크기의 " + file.getPath() + " 파일이 생성되었습니다.");
+      
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    
+  }
+  
   public static void main(String[] args) {
-    method4();
+    method5();
   }
   
   public static final String song = "동해물과 백두산이 마르고 닳도록 하느님이 보우하사\n우리나라 만세 무궁화 삼천리 화려강산\n대한사람 대한으로 길이 보전하세";
