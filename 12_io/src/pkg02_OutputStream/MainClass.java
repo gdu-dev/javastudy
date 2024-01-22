@@ -1,5 +1,6 @@
 package pkg02_OutputStream;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 
@@ -11,6 +12,13 @@ public class MainClass {
    * 2. 출력 단위
    *    1) int
    *    2) byte[]
+   */
+  
+  /*
+   * java.io.BufferedOutputStream
+   * 1. 버퍼링을 지원하는 바이트 출력 스트림이다.
+   * 2. 보조 스트림으로 메인 스트림과 함께 사용해야 한다.
+   * 3. 버퍼링을 지원하므로 출력 속도가 향상된다.
    */
   
   public static void method1() {
@@ -111,8 +119,111 @@ public class MainClass {
     
   }
   
+  public static void method3() {
+    
+    File dir = new File("\\storage");
+    if(!dir.exists()) {
+      dir.mkdirs();
+    }
+    
+    File file = new File(dir, "sample3.dat");
+    
+    // 버퍼 출력 스트림 선언
+    BufferedOutputStream out = null;
+    
+    try {
+      
+      // 버퍼 출력 스트림 생성
+      out = new BufferedOutputStream(new FileOutputStream(file));
+      
+      // 출력할 데이터
+      String str1 = "how do you do? nice to meet you\n";
+      String str2 = "i'm fine thank you";
+      
+      // 출력
+      out.write(str1.getBytes());
+      out.write(str2.getBytes());
+      
+      // 버퍼 출력 스트림 닫기
+      out.close();
+      
+      // 확인
+      System.out.println(file.length() + "바이트 크기의 " + file.getPath() + " 파일이 생성되었습니다.");
+      
+    } catch(Exception e) {
+      e.printStackTrace();
+    }
+    
+  }
+  
   public static void main(String[] args) {
-    method2();
+    practice2();
+  }
+  
+  public static final String song = "동해물과 백두산이 마르고 닳도록 하느님이 보우하사\n우리나라 만세 무궁화 삼천리 화려강산\n대한사람 대한으로 길이 보전하세";
+  
+  public static void practice1() {
+    
+    // FileOutputStream 으로 애국가 1절 파일로 보내기 : 시간 재기(System.nanoTime())
+    
+    File dir = new File("\\storage");
+    if(!dir.exists()) {
+      dir.mkdirs();
+    }
+    
+    File file = new File(dir, "애국가1.dat");
+    
+    FileOutputStream out = null;
+    
+    try {
+      
+      out = new FileOutputStream(file);
+      
+      long start = System.nanoTime();
+      out.write(song.getBytes());
+      long end = System.nanoTime();
+      
+      out.close();
+      
+      System.out.println(file.getPath() + " 파일이 생성되었습니다.");
+      System.out.println((end - start) + "ns 소요됨");
+      
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    
+  }
+  
+  public static void practice2() {
+    
+    // BufferedOutputStream 으로 애국가 1절 파일로 보내기 : 시간 재기
+    
+    File dir = new File("\\storage");
+    if(!dir.exists()) {
+      dir.mkdirs();
+    }
+    
+    File file = new File(dir, "애국가2.dat");
+    
+    BufferedOutputStream out = null;
+    
+    try {
+      
+      out = new BufferedOutputStream(new FileOutputStream(file));
+      
+      long start = System.nanoTime();
+      out.write(song.getBytes());
+      long end = System.nanoTime();
+      
+      out.close();
+      
+      System.out.println(file.getPath() + " 파일이 생성되었습니다.");
+      System.out.println((end - start) + "ns 소요됨");
+      
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    
   }
 
 }
