@@ -1,6 +1,7 @@
 package pkg02_OutputStream;
 
 import java.io.BufferedOutputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 
@@ -19,6 +20,13 @@ public class MainClass {
    * 1. 버퍼링을 지원하는 바이트 출력 스트림이다.
    * 2. 보조 스트림으로 메인 스트림과 함께 사용해야 한다.
    * 3. 버퍼링을 지원하므로 출력 속도가 향상된다.
+   */
+  
+  /*
+   * java.io.DataOutputStream
+   * 1. 자바 변수 값을 출력하는 바이트 출력 스트림이다.
+   * 2. 보조 스트림으로 메인 스트림과 함게 사용해야 한다.
+   * 3. 타입 별로 전용 메소드가 존재한다.
    */
   
   public static void method1() {
@@ -156,8 +164,51 @@ public class MainClass {
     
   }
   
+  public static void method4() {
+    
+    File dir = new File("\\storage");
+    if(!dir.exists()) {
+      dir.mkdirs();
+    }
+    
+    File file = new File(dir, "sample4.dat");
+    
+    // 데이터 출력 스트림 선언
+    DataOutputStream out = null;
+    
+    try {
+      
+      // 데이터 출력 스트림 생성
+      out = new DataOutputStream(new FileOutputStream(file));
+      
+      // 출력할 데이터
+      String name = "홍길동";
+      int age = 10;
+      double height = 140.5;
+      boolean isAdult = (age >= 20);
+      char gender = '남';
+      
+      // 출력
+      out.writeUTF(name);
+      out.writeInt(age);
+      out.writeDouble(height);
+      out.writeBoolean(isAdult);
+      out.writeChar(gender);
+      
+      // 데이터 출력 스트림 닫기
+      out.close();
+      
+      // 확인
+      System.out.println(file.length() + "바이트 크기의 " + file.getPath() + " 파일이 생성되었습니다.");
+      
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    
+  }
+  
   public static void main(String[] args) {
-    practice2();
+    method4();
   }
   
   public static final String song = "동해물과 백두산이 마르고 닳도록 하느님이 보우하사\n우리나라 만세 무궁화 삼천리 화려강산\n대한사람 대한으로 길이 보전하세";
