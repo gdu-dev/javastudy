@@ -3,6 +3,7 @@ package pkg01_File;
 import java.io.File;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 
 public class MainClass {
 
@@ -120,7 +121,61 @@ public class MainClass {
   }
   
   public static void main(String[] args) {
-    method3();
+    practice2(new File("\\2024\\01\\22"));
   }
 
+  public static void practice1() {
+    
+    // \2024\01\22 디렉터리 만들기 (현재 날짜의 디렉터리 만들기)
+    
+    LocalDate today = LocalDate.now();
+    int year = today.getYear();
+    int month = today.getMonthValue();
+    int day = today.getDayOfMonth();
+    
+    StringBuilder builder = new StringBuilder();
+    builder.append("\\");
+    builder.append(year);
+    builder.append("\\");
+    builder.append(String.format("%02d", month));
+    builder.append("\\");
+    builder.append(String.format("%02d", day));
+    
+    File dir = new File(builder.toString());
+    if(!dir.exists()) {
+      dir.mkdirs();
+    }
+    
+    System.out.println(dir.getPath() + " 디렉터리 생성이 완료되었습니다.");
+    
+  }
+  
+  public static void practice2(File dir) {
+    
+    // \2024 디렉터리 삭제하기 (비어 있는 디렉터리만 삭제할 수 있다.)
+    
+    // 순서대로 하나씩 삭제하기
+    // \2024\01\22 삭제 -> \2024\01 삭제 -> \2024 삭제
+    
+    // 재귀 호출로 해결하기(자기가 자기를 호출하는 방식)
+    // practice2(new File(\2024\01\22)) 호출 후
+    // practice2(new File(\2024\01)) 호출 후
+    // practice2(new File(\2024)) 호출
+    // practice2(new File(\)) 호출로 마무리
+    
+    // 파라미터 File dir 객체의 상위 디렉터리가 없으면 종료
+    File parent = dir.getParentFile();
+    if(parent == null) {
+      return;
+    }
+    
+    // 현재 디렉터리 삭제
+    System.out.println(dir.getPath() + " 삭제하였습니다.");
+    dir.delete();
+    
+    // 상위 디렉터리를 practice2 메소드에 전달
+    practice2(parent);
+    
+  }
+  
 }
