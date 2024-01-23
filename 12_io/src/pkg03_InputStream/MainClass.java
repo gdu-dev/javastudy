@@ -1,5 +1,6 @@
 package pkg03_InputStream;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -13,6 +14,13 @@ public class MainClass {
    * 2. 입력 단위
    *    1) int
    *    2) byte[]
+   */
+  
+  /*
+   * java.io.BufferedInputStream
+   * 1. 버퍼링을 지원하는 바이트 입력 스트림이다.
+   * 2. 보조 스트림이므로 메인 스트림과 함께 사용해야 한다.
+   * 3. 버퍼링을 지원하므로 입력 속도가 향상된다.
    */
   
   public static void method1() {
@@ -102,7 +110,44 @@ public class MainClass {
     
   }
   
-  
+  public static void method3() {
+    
+    File dir = new File("\\storage");
+    File file = new File(dir, "sample3.dat");
+    
+    // 버퍼 입력 스트림 선언
+    BufferedInputStream in = null;
+    
+    try {
+      
+      // 버퍼 입력 스트림 생성
+      in = new BufferedInputStream(new FileInputStream(file));
+      
+      // 읽은 데이터를 보관할 배열
+      byte[] b = new byte[(int)file.length()];
+      
+      // 읽을 단위 (byte[] 배열로 읽는다.)
+      byte[] bytes = new byte[5];
+      int idx = 0;
+      
+      // 읽기
+      int readByte = 0;
+      while( (readByte = in.read(bytes)) != -1 ) {
+        System.arraycopy(bytes, 0, b, idx, readByte);
+        idx += bytes.length;  // idx += readByte;
+      }
+      
+      // 확인
+      System.out.println(new String(b));
+      
+      // 파일 입력 스트림 닫기
+      in.close();
+      
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    
+  }
   
   
   
@@ -115,7 +160,7 @@ public class MainClass {
   
   
   public static void main(String[] args) {
-    method2();
+    method3();
   }
 
 }
