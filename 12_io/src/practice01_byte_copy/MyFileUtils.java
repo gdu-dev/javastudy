@@ -56,7 +56,8 @@ public class MyFileUtils {
   // 파일 이동 메소드
   public static void fileMove(String src, String dest) {
     
-    
+    fileCopy(src, dest);
+    new File(src).delete();
     
   }
   
