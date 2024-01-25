@@ -1,5 +1,6 @@
 package practice01;
 
+import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -152,6 +153,26 @@ public class MainClass {
     //   몇 자리의 인증번호를 생성할까요? >>> 6
     //   생성된 6자리 인증번호는 Fa013b입니다.
     
+    Scanner sc = new Scanner(System.in);
+    System.out.println("몇 자리의 인증번호를 생성할까요? >>> ");
+    int count = sc.nextInt();
+    SecureRandom secureRandom = new SecureRandom();
+    StringBuilder sb = new StringBuilder();
+    for(int n = 0; n < count; n++) {
+      double randomNumber = secureRandom.nextDouble();  // 0.0 <= randomNumber < 1.0
+      // 정수 대문자 소문자 발생 확률 : 33% 33% 34%
+      if(randomNumber < 0.33) {
+        sb.append(secureRandom.nextInt(10));
+      } else if(randomNumber < 0.66) {
+        sb.append((char)(secureRandom.nextInt(26) + 'A'));
+      } else {
+        sb.append((char)(secureRandom.nextInt(26) + 'a'));
+      }
+    }
+    String code = sb.toString();
+    System.out.println("생성된 " + count + "자리 인증번호는 " + code + "입니다.");
+    sc.close();
+    
   }
 
   public static void method7() {
@@ -168,6 +189,23 @@ public class MainClass {
     // 입력 >>> 4500
     // 정답입니다. 총 5번만에 성공했습니다.
     
+    Scanner sc = new Scanner(System.in);
+    int goal = (int)(Math.random() * 10000) + 1;
+    int input = 0;
+    int nth = 0;
+    do {
+      System.out.println("입력 >>> ");
+      input = sc.nextInt();
+      nth++;
+      if(goal == input) {
+        System.out.println("정답은 " + goal + "이었습니다. " + nth + "번만에 성공했습니다.");
+      } else if(goal > input) {
+        System.out.println("Up!");
+      } else {
+        System.out.println("Down!");
+      }
+    } while(goal != input);
+    sc.close();
     
   }
 
@@ -185,7 +223,21 @@ public class MainClass {
     // 7 : ################## 18
     // 8 : ####### 7
     // 9 : ########### 11
-    
+
+    int[] numbers = new int[100];  // 100개 난수
+    int[] frequency = new int[10]; // 각 숫자의 빈도수
+    for(int i = 0; i < numbers.length; i++) {
+      numbers[i] = (int)(Math.random() * 10);
+      frequency[numbers[i]]++;
+    }
+    for(int i = 0; i < frequency.length; i++) {
+      StringBuilder sb = new StringBuilder();
+      for(int n = 0; n < frequency[i]; n++) {
+        sb.append("#");
+      }
+      String graph = sb.toString();
+      System.out.println(i + " : " + graph + " " + frequency[i]);
+    }
     
   }
   
@@ -216,6 +268,36 @@ public class MainClass {
     //  14 20 11 19  6
     //   8 17  5 12  7
     //  16 22 18 24 23
+
+    // 빙고 크기
+    final int SIZE = 5;
+    // 빙고판 생성
+    int[][] bingo = new int[SIZE][SIZE];
+    // 순서대로 초기화
+    for(int i = 0; i < SIZE; i++) {
+      for(int j = 0; j < SIZE; j++) {
+        bingo[i][j] = (i * SIZE) + (j + 1);
+      }
+    }
+    // 셔플(섞기)
+    for(int i = 0; i < SIZE; i++) {
+      for(int j = 0; j < SIZE; j++) {
+        // bingo[i][j]와 bingo[x][y]의 교환
+        int x = (int)(Math.random() * SIZE);
+        int y = (int)(Math.random() * SIZE);
+        int temp;
+        temp = bingo[i][j];
+        bingo[i][j] = bingo[x][y];
+        bingo[x][y] = temp;
+      }
+    }
+    // 출력
+    for(int i = 0; i < SIZE; i++) {
+      for(int j = 0; j < SIZE; j++) {
+        System.out.print(String.format("%3d", bingo[i][j]));
+      }
+      System.out.println();
+    }
     
   }
   
@@ -228,7 +310,7 @@ public class MainClass {
 //      System.out.println(entry.getKey() + ": " + entry.getValue());
 //    }
     
-    method5();
+    method9();
     
   }
   
