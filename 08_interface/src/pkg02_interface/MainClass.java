@@ -24,7 +24,7 @@ public class MainClass {
     System.out.println(shape2.getCircum());
     shape2.whoami("사각형");
     Shape.whoami2("사각형");
-
+   
     
   }
 
