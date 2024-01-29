@@ -118,7 +118,7 @@ public class MainClass {
   }
   
   public static void main(String[] args) {
-    method4();
+    method2();
   }
 
 }

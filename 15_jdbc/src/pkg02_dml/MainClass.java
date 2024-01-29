@@ -105,9 +105,93 @@ public class MainClass {
     }
     
   }
+
+  public static void method3() {
+    
+    Connection con = null;
+    PreparedStatement ps = null;
+    
+    try {
+      
+      Class.forName("oracle.jdbc.OracleDriver");
+      
+      String url = System.getProperty("jdbc.url");
+      String user = System.getProperty("jdbc.user");
+      String password = System.getProperty("jdbc.password");
+      con = DriverManager.getConnection(url, user, password);
+      
+      String sql = "UPDATE SAMPLE_T SET SAMPLE_EDITOR = SAMPLE_EDITOR || 2, SAMPLE_DT = CURRENT_DATE WHERE SAMPLE_NO = ?";
+      
+      ps = con.prepareStatement(sql);
+      
+      // 수정할 SAMPLE_NO 입력
+      Scanner sc = new Scanner(System.in);
+      System.out.println("수정할 SAMPLE_NO 입력하세요 >>>");
+      int sampleNo = sc.nextInt();
+      sc.close();
+      
+      // 입력값을 쿼리문에 전달
+      ps.setInt(1, sampleNo);  // 쿼리문의 1번째 물음표에 sampleNo 전달하기
+      
+      int result = ps.executeUpdate();
+      System.out.println(result + " 행 이(가) 수정되었습니다.");
+      
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      try {
+        if(ps != null)  ps.close();
+        if(con != null) con.close();
+      } catch (Exception e2) {
+        e2.printStackTrace();
+      }
+    }
+    
+  }
   
+  public static void method4() {
+    
+    Connection con = null;
+    PreparedStatement ps = null;
+    
+    try {
+      
+      Class.forName("oracle.jdbc.OracleDriver");
+      
+      String url = System.getProperty("jdbc.url");
+      String user = System.getProperty("jdbc.user");
+      String password = System.getProperty("jdbc.password");
+      con = DriverManager.getConnection(url, user, password);
+      
+      String sql = "DELETE FROM SAMPLE_T WHERE SAMPLE_NO = ?";
+      
+      ps = con.prepareStatement(sql);
+      
+      Scanner sc = new Scanner(System.in);
+      System.out.println("삭제할 SAMPLE_NO 입력하세요 >>>");
+      int sampleNo = sc.nextInt();
+      sc.close();
+      
+      ps.setInt(1, sampleNo);
+      
+      int result = ps.executeUpdate();
+      System.out.println(result + " 행 이(가) 삭제되었습니다.");
+      
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      try {
+        if(ps != null)  ps.close();
+        if(con != null) con.close();
+      } catch (Exception e2) {
+        e2.printStackTrace();
+      }
+    }
+    
+  }
+
   public static void main(String[] args) {
-    method2();
+    method4();
   }
 
 }
