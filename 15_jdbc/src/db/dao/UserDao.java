@@ -153,28 +153,54 @@ public class UserDao {
     
   }
   
-  
   // 사용자 수정 : updateUser, modifyUser 등
-  
-  
+  public int modifyUser(UserDto userDto) {
+
+    int result = 0;
+    
+    try {
+      
+      connection();
+      String sql = "UPDATE USER_T"
+                 + "   SET USER_NAME = ?, USER_TEL = ?"
+                 + " WHERE USER_NO = ?";
+      ps = con.prepareStatement(sql);
+      ps.setString(1, userDto.getUser_name());
+      ps.setString(2, userDto.getUser_tel());
+      ps.setInt(3, userDto.getUser_no());
+      result = ps.executeUpdate();
+      
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      close();
+    }
+    
+    return result;
+    
+  }
   
   // 사용자 삭제 : deleteUser, removeUser 등
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  public int removeUser(int user_no) {
+    
+    int result = 0;
+    
+    try {
+      
+      connection();
+      String sql = "DELETE FROM USER_T WHERE USER_NO = ?";
+      ps = con.prepareStatement(sql);
+      ps.setInt(1, user_no);
+      result = ps.executeUpdate();
+      
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      close();
+    }
+    
+    return result;
+    
+  }
   
 }
