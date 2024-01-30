@@ -13,7 +13,7 @@ public class MainClass {
    *    TALK_NO      NUMBER (PK)
    *    TALK_CONTENT VARCHAR2(1000 BYTE)
    *    TALK_USER    VARCHAR2(1000 BYTE)
-   *    WRITTEN_AT    TIMESTAMP (* 현재 날짜/시간 : CURRENT_TIMESTAMP)
+   *    WRITTEN_AT   TIMESTAMP (* 현재 날짜/시간 : CURRENT_TIMESTAMP)
    * TALK_SEQ 시퀀스 존재함
    * DB 서버 환경
    *    192.168.0.214
