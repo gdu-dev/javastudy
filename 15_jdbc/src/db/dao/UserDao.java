@@ -130,7 +130,28 @@ public class UserDao {
   }
   
   // 사용자 등록 : insertUser, saveUser, regiterUser 등
-  
+  public int saveUser(UserDto userDto) {
+    
+    int result = 0;
+    
+    try {
+      
+      connection();
+      String sql = "INSERT INTO USER_T (USER_NO, USER_NAME, USER_TEL, JOIN_DT) VALUES(USER_SEQ.NEXTVAL, ?, ?, TO_CHAR(CURRENT_DATE, 'YYYY-MM-DD'))";
+      ps = con.prepareStatement(sql);
+      ps.setString(1, userDto.getUser_name());
+      ps.setString(2, userDto.getUser_tel());
+      result = ps.executeUpdate();
+      
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      close();
+    }
+    
+    return result;
+    
+  }
   
   
   // 사용자 수정 : updateUser, modifyUser 등
