@@ -2,6 +2,7 @@ package db.main;
 
 import java.util.List;
 
+import db.ctrl.UserController;
 import db.dao.UserDao;
 import db.dto.UserDto;
 import db.service.UserService;
@@ -11,17 +12,22 @@ public class MainClass {
 
   public static void main(String[] args) {
     
+    UserController userController = new UserController();
+    
+    System.out.println(userController.requestHandle("3", new UserDto(0, "테스트이름", "테스트연락처", null)));
+    System.out.println(userController.requestHandle("1", null));
+    
     //UserDto userDto = new UserDto(0, "테스트이름", "테스트연락처", null);
     //UserDao userDao = UserDao.getInstance();
     //int result = userDao.saveUser(userDto);
     //System.out.println(result + "행이 삽입되었습니다.");
 
-    UserService userService = new UserServiceImpl();
-    
-    List<UserDto> users = userService.getUsers();
-    for(UserDto user : users) {
-      System.out.println(user);
-    }
+//    UserService userService = new UserServiceImpl();
+//    
+//    List<UserDto> users = userService.getUsers();
+//    for(UserDto user : users) {
+//      System.out.println(user);
+//    }
     
     //UserDto userDto = userDao.getUser(1);
     //System.out.println(userDto);
