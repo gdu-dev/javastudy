@@ -3,7 +3,6 @@ package db.dto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -15,13 +14,12 @@ import lombok.ToString;
  * 4. 필드는 칼럼에 매칭하고 생성자와 Getter/Setter 를 만든다.
  */
 
-@RequiredArgsConstructor
 @ToString
-//@NoArgsConstructor
+@NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class UserDto {
+public class UserDto2 {
   private int user_no;
   private String user_name;
   private String user_tel;
