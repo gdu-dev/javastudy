@@ -1,8 +1,11 @@
 package practice02_Lotto;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 public class Lotto {
   
@@ -62,8 +65,49 @@ public class Lotto {
     
     List<String> papers = new ArrayList<String>();
     
-    /* 여기에 구현 */
-       
+    while(money > 0) {
+      
+      // 한 game 이 1000원이다.
+      int game = (money >= 5000) ? 5 : money / 1000;
+      
+      // game 수에 맞는 lotto 2차원 배열을 준비한다.
+      int[][] lotto = new int[game][6];
+      
+      // lotto 2차원 배열에 1 ~ 45 사이 난수를 저장하는 for 문
+      for(int i = 0; i < game; i++) {
+        
+        // SecureRandom 을 이용해 6개의 난수를 HashSet에 중복 없이 생성해 둔다.
+        SecureRandom secureRandom = new SecureRandom();
+        Set<Integer> set = new HashSet<Integer>();
+        while(set.size() != 6) {
+          set.add(secureRandom.nextInt(45) + 1);
+        }
+        
+        // 생성한 6개 난수를 lotto 2차원 배열에 저장한다.
+        int j = 0;
+        for(Integer number : set) {
+          lotto[i][j++] = number;
+        }
+
+      }
+
+      // lotto 2차원 배열의 내용을 String 으로 만들어 StringBuilder 에 저장하는 for 문
+      StringBuilder builder = new StringBuilder();
+      for(int i = 0; i < game; i++) {
+        builder.append(String.format("%02d", i + 1) + " : ");
+        for(int j = 0; j < 6; j++) {
+          builder.append(String.format("%4d", lotto[i][j]));
+        }
+        builder.append("\n");        
+      }
+      
+      // StringBuilder 의 내용을 List papers 에 기록한다.
+      papers.add(builder.toString());
+      
+      money -= 5000;
+      
+    }
+    
     return papers;
     
   }
